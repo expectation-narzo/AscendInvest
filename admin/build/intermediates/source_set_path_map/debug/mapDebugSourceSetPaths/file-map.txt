@@ -41,12 +41,12 @@ com.ascend.invest.admin-lifecycle-viewmodel-2.6.1-39 C:\Users\NARZO\.gradle\cach
 com.ascend.invest.admin-recyclerview-1.1.0-40 C:\Users\NARZO\.gradle\caches\8.13\transforms\efbc6728381f865666797db7ffa7fc88\transformed\recyclerview-1.1.0\res
 com.ascend.invest.admin-startup-runtime-1.1.1-41 C:\Users\NARZO\.gradle\caches\8.13\transforms\fa2534611726635b6f24b8b373c3371c\transformed\startup-runtime-1.1.1\res
 com.ascend.invest.admin-lifecycle-livedata-2.6.1-42 C:\Users\NARZO\.gradle\caches\8.13\transforms\fc6b700a17d5a5548b656747f2ef61bc\transformed\lifecycle-livedata-2.6.1\res
-com.ascend.invest.admin-pngs-43 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\generated\res\pngs\debug
-com.ascend.invest.admin-res-44 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\generated\res\processDebugGoogleServices
-com.ascend.invest.admin-resValues-45 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\generated\res\resValues\debug
-com.ascend.invest.admin-updated_navigation_xml-46 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\generated\updated_navigation_xml\debug
-com.ascend.invest.admin-packageDebugResources-47 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\intermediates\incremental\debug\packageDebugResources\merged.dir
-com.ascend.invest.admin-packageDebugResources-48 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
-com.ascend.invest.admin-debug-49 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\build\intermediates\merged_res\debug\mergeDebugResources
-com.ascend.invest.admin-debug-50 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\debug\res
-com.ascend.invest.admin-main-51 C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\res
+com.ascend.invest.admin-pngs-43 E:\Major Projects\AscendInvest\admin\build\generated\res\pngs\debug
+com.ascend.invest.admin-res-44 E:\Major Projects\AscendInvest\admin\build\generated\res\processDebugGoogleServices
+com.ascend.invest.admin-resValues-45 E:\Major Projects\AscendInvest\admin\build\generated\res\resValues\debug
+com.ascend.invest.admin-updated_navigation_xml-46 E:\Major Projects\AscendInvest\admin\build\generated\updated_navigation_xml\debug
+com.ascend.invest.admin-packageDebugResources-47 E:\Major Projects\AscendInvest\admin\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.ascend.invest.admin-packageDebugResources-48 E:\Major Projects\AscendInvest\admin\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.ascend.invest.admin-debug-49 E:\Major Projects\AscendInvest\admin\build\intermediates\merged_res\debug\mergeDebugResources
+com.ascend.invest.admin-debug-50 E:\Major Projects\AscendInvest\admin\src\debug\res
+com.ascend.invest.admin-main-51 E:\Major Projects\AscendInvest\admin\src\main\res

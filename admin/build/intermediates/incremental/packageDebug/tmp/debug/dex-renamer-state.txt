@@ -1,9 +1,9 @@
-#Tue Jun 09 11:21:39 IST 2026
-base.0=C\:\\Users\\NARZO\\Desktop\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\NARZO\\Desktop\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\NARZO\\Desktop\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
-base.3=C\:\\Users\\NARZO\\Desktop\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
-base.4=C\:\\Users\\NARZO\\Desktop\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Wed Aug 12 20:47:42 IST 2026
+base.0=E\:\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=E\:\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=E\:\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\11\\classes.dex
+base.3=E\:\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\15\\classes.dex
+base.4=E\:\\Major Projects\\AscendInvest\\admin\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=11/classes.dex

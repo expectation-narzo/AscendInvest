@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:gravity="start"
+    android:orientation="vertical"
+    android:padding="3dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:gravity="start"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:orientation="horizontal">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_logo"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"/>
+        <LinearLayout
+            android:id="@+id/rl_receiver_bubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_chat_receiver"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/tv_receiver_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#F47201"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp"/>
+
+            <!-- Reply Preview (Incoming) -->
+            <LinearLayout
+                android:id="@+id/ll_reply_receiver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#F8FAFC"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp"
+                android:layout_marginBottom="6dp"
+                android:visibility="gone">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/primary_purple"
+                    android:layout_marginBottom="4dp" />
+                <TextView
+                    android:id="@+id/tv_reply_user_receiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User"
+                    android:textColor="@color/primary_purple"
+                    android:textSize="11sp"
+                    android:textFontWeight="800" />
+                <TextView
+                    android:id="@+id/tv_reply_msg_receiver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Message preview"
+                    android:textColor="#94A3B8"
+                    android:textSize="11sp"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_receiver_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello!"
+                android:maxWidth="220dp"
+                android:textColor="#1E293B"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_receiver_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="2dp"
+        android:text="10:46 AM"
+        android:textColor="#888"
+        android:textSize="10sp"/>
+</LinearLayout>

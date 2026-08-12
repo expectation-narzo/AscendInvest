@@ -54,7 +54,7 @@ This project is built following professional software development lifecycles (SD
 *   **CI/CD Pipeline:** Integrated **GitHub Actions** for automated build verification and unit testing on every push.
 *   **Modular Architecture:** Strict separation between Client (`app`), Administration (`admin`), and Web Landing (`website`) to ensure scalability and security.
 *   **Background Lifecycle Management:** Uses **Android WorkManager** for deferrable, guaranteed background execution of financial logic (e.g., profit distribution).
-*   **Modern State Management:** Implementation of **ViewBinding** and **Jetpack Navigation** to reduce boilerplate and prevent null-pointer exceptions in UI transitions.
+*   **Modern State Management:** Implementation of **Material Design 3** and **Firebase Realtime Database** for live state synchronization and responsive UI.
 *   **Encapsulated Logic:** Business logic is decoupled into specialized **Handler Classes** to maintain high readability and facilitate future unit testing.
 *   **Relational vs. NoSQL Versatility:** Demonstrates proficiency in both **Firebase (Realtime DB)** for live mobile updates and **SQL (MySQL/Knex)** for structured web data.
 
@@ -63,15 +63,15 @@ This project is built following professional software development lifecycles (SD
 ## 🛠 Tech Stack
 
 ### Mobile (Android)
-*   **Language:** Java / Kotlin
-*   **UI Framework:** Material Design 3, ViewBinding, Jetpack Navigation.
-*   **Architecture:** Clean Architecture / MVVM.
+*   **Language:** Java
+*   **UI Framework:** Material Design 3, XML Layouts.
+*   **Architecture:** Modular Handler-based Architecture.
 *   **Services:** Firebase Auth, Realtime Database, Cloud Messaging.
 *   **Processing:** WorkManager for automated profit cycles and order matching.
 *   **Utilities:** MPAndroidChart, ZXing (QR Scanning).
 
 ### Web (Fullstack)
-*   **Frontend:** React, Lucide Icons, Tailwind CSS, Framer Motion.
+*   **Frontend:** React (TypeScript), Lucide Icons, Tailwind CSS, Framer Motion.
 *   **Analytics:** ApexCharts, Recharts.
 *   **Server:** Node.js, Express, JWT Authentication, Socket.io.
 *   **Persistence:** MySQL / MariaDB / SQLite via Knex.
@@ -80,7 +80,7 @@ This project is built following professional software development lifecycles (SD
 
 ## 📂 Project Structure
 
-The project is divided into two primary modules:
+The project is divided into three primary modules:
 
 *   `app/`: The client-facing application where users trade, invest, and manage their wallets.
 *   `admin/`: The internal management tool for platform operators to handle support, transactions, and system settings.
@@ -101,9 +101,19 @@ The project includes a high-availability web platform built for scalability and 
 
 ## 📸 Screenshots
 
-| P2P Marketplace | Portfolio Tracking | Admin Dashboard |
+### User Application
+| Dashboard | Navigation | P2P Marketplace |
 | :---: | :---: | :---: |
-| *[Add Screenshot]* | *[Add Screenshot]* | *[Add Screenshot]* |
+| ![Dashboard](screenshots/user_dashboard.png) | ![Navigation](screenshots/user_menu.png) | ![P2P Marketplace](screenshots/user_p2p.png) |
+
+| P2P Trade Request | Payment Confirmation | Referral System |
+| :---: | :---: | :---: |
+| ![P2P Request](screenshots/user_p2p_request.png) | ![Payment Confirm](screenshots/user_payment.png) | ![Referrals](screenshots/user_referral.png) |
+
+### Admin Console
+| System Controller | Dispute Resolution |
+| :---: | :---: |
+| ![Admin Console](screenshots/admin_dashboard.png) | ![Dispute History](screenshots/admin_p2p.png) |
 
 ---
 
@@ -117,7 +127,7 @@ The project includes a high-availability web platform built for scalability and 
 ### Installation
 1.  Clone the repository:
     ```bash
-    git clone https://github.com/your-username/AscendInvest.git
+    git clone https://github.com/expectation-narzo/AscendInvest.git
     ```
 2.  Open the project in Android Studio.
 3.  Sync Gradle and ensure all dependencies are resolved.
@@ -132,4 +142,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Developed with ❤️ by the Exp Narzo.
+Developed with ❤️ by [Exp Narzo](https://www.linkedin.com/in/expectation-narzo).

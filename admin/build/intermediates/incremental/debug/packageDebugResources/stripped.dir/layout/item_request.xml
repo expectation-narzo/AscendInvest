@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="4dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/divider_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_user_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UID: ---"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@color/primary_purple"
+                android:fontFamily="@font/public_sans"
+                android:background="@color/primary_light"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:letterSpacing="0.05"/>
+
+            <TextView
+                android:id="@+id/tv_status_chip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="PENDING"
+                android:textSize="9sp"
+                android:textStyle="bold"
+                android:textColor="@color/warning_amber"
+                android:fontFamily="@font/public_sans"
+                android:background="@color/warning_light"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:letterSpacing="0.1"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0.00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_main"
+            android:fontFamily="@font/public_sans"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:id="@+id/tv_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details will appear here"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="@font/public_sans"
+            android:layout_marginTop="2dp"
+            android:alpha="0.8"/>
+
+        <TextView
+            android:id="@+id/tv_wallet_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Wallet: ---"
+            android:textSize="10sp"
+            android:textColor="@color/text_main"
+            android:fontFamily="monospace"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_tx_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TXID: ---"
+            android:textSize="10sp"
+            android:textColor="@color/primary_purple"
+            android:fontFamily="monospace"
+            android:layout_marginTop="2dp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="end">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_reject"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Reject"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:textColor="@color/error_red"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                android:fontFamily="@font/public_sans"
+                android:paddingHorizontal="12dp"
+                app:rippleColor="@color/error_light"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Approve"
+                android:backgroundTint="@color/secondary_green"
+                android:layout_marginStart="12dp"
+                android:textAllCaps="false"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/public_sans"
+                android:paddingHorizontal="16dp"
+                app:cornerRadius="8dp"
+                app:elevation="0dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

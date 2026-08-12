@@ -30,121 +30,121 @@
 19-->[androidx.core:core:1.9.0] C:\Users\NARZO\.gradle\caches\8.13\transforms\dddcd4c9e606cb6663a657a43f871564\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
 20
 21    <application
-21-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:4:5-74:19
+21-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:4:5-74:19
 22        android:allowBackup="true"
-22-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:5:9-35
+22-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:5:9-35
 23        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 23-->[androidx.core:core:1.9.0] C:\Users\NARZO\.gradle\caches\8.13\transforms\dddcd4c9e606cb6663a657a43f871564\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
 24        android:debuggable="true"
 25        android:extractNativeLibs="false"
 26        android:icon="@drawable/ic_logo"
-26-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:6:9-41
+26-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:6:9-41
 27        android:label="@string/app_name"
-27-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:7:9-41
+27-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:7:9-41
 28        android:roundIcon="@drawable/ic_logo"
-28-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:8:9-46
+28-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:8:9-46
 29        android:supportsRtl="true"
-29-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:9:9-35
+29-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:9:9-35
 30        android:testOnly="true"
 31        android:theme="@style/Theme.AscendInvestAdmin" >
-31-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:10:9-55
+31-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:10:9-55
 32        <activity
-32-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:12:9-19:20
+32-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:12:9-19:20
 33            android:name="com.ascend.invest.admin.LoginActivity"
-33-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:13:13-42
+33-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:13:13-42
 34            android:exported="true" >
-34-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:14:13-36
+34-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:14:13-36
 35            <intent-filter>
-35-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:15:13-18:29
+35-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:15:13-18:29
 36                <action android:name="android.intent.action.MAIN" />
-36-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:16:17-69
-36-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:16:25-66
+36-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:16:17-69
+36-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:16:25-66
 37
 38                <category android:name="android.intent.category.LAUNCHER" />
-38-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:17:17-77
-38-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:17:27-74
+38-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:17:17-77
+38-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:17:27-74
 39            </intent-filter>
 40        </activity>
 41        <activity
-41-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:21:9-23:40
+41-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:21:9-23:40
 42            android:name="com.ascend.invest.admin.AdminMainActivity"
-42-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:22:13-46
+42-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:22:13-46
 43            android:exported="false" />
-43-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:23:13-37
+43-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:23:13-37
 44        <activity
-44-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:25:9-27:40
+44-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:25:9-27:40
 45            android:name="com.ascend.invest.admin.ManageRequestsActivity"
-45-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:26:13-51
+45-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:26:13-51
 46            android:exported="false" />
-46-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:27:13-37
+46-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:27:13-37
 47        <activity
-47-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:29:9-31:40
+47-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:29:9-31:40
 48            android:name="com.ascend.invest.admin.SupportTicketsActivity"
-48-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:30:13-51
+48-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:30:13-51
 49            android:exported="false" />
-49-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:31:13-37
+49-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:31:13-37
 50        <activity
-50-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:33:9-35:40
+50-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:33:9-35:40
 51            android:name="com.ascend.invest.admin.ManagePlansActivity"
-51-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:34:13-48
+51-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:34:13-48
 52            android:exported="false" />
-52-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:35:13-37
+52-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:35:13-37
 53        <activity
-53-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:37:9-39:40
+53-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:37:9-39:40
 54            android:name="com.ascend.invest.admin.ManageFaqActivity"
-54-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:38:13-46
+54-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:38:13-46
 55            android:exported="false" />
-55-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:39:13-37
+55-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:39:13-37
 56        <activity
-56-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:41:9-43:40
+56-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:41:9-43:40
 57            android:name="com.ascend.invest.admin.ManageLinksActivity"
-57-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:42:13-48
+57-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:42:13-48
 58            android:exported="false" />
-58-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:43:13-37
+58-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:43:13-37
 59        <activity
-59-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:45:9-47:40
+59-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:45:9-47:40
 60            android:name="com.ascend.invest.admin.ManageAnnouncementsActivity"
-60-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:46:13-56
+60-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:46:13-56
 61            android:exported="false" />
-61-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:47:13-37
+61-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:47:13-37
 62        <activity
-62-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:49:9-51:40
+62-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:49:9-51:40
 63            android:name="com.ascend.invest.admin.UserSearchActivity"
-63-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:50:13-47
+63-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:50:13-47
 64            android:exported="false" />
-64-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:51:13-37
+64-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:51:13-37
 65        <activity
-65-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:53:9-55:40
+65-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:53:9-55:40
 66            android:name="com.ascend.invest.admin.UserDetailActivity"
-66-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:54:13-47
+66-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:54:13-47
 67            android:exported="false" />
-67-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:55:13-37
+67-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:55:13-37
 68        <activity
-68-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:57:9-59:40
+68-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:57:9-59:40
 69            android:name="com.ascend.invest.admin.TransactionSearchActivity"
-69-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:58:13-54
+69-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:58:13-54
 70            android:exported="false" />
-70-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:59:13-37
+70-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:59:13-37
 71        <activity
-71-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:61:9-63:40
+71-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:61:9-63:40
 72            android:name="com.ascend.invest.admin.ManageP2PActivity"
-72-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:62:13-46
+72-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:62:13-46
 73            android:exported="false" />
-73-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:63:13-37
+73-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:63:13-37
 74        <activity
-74-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:65:9-68:58
+74-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:65:9-68:58
 75            android:name="com.ascend.invest.admin.ManageP2PChatActivity"
-75-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:66:13-50
+75-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:66:13-50
 76            android:exported="false"
-76-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:67:13-37
+76-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:67:13-37
 77            android:windowSoftInputMode="adjustResize" />
-77-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:68:13-55
+77-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:68:13-55
 78        <activity
-78-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:70:9-72:40
+78-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:70:9-72:40
 79            android:name="com.ascend.invest.admin.ManageReferralActivity"
-79-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:71:13-51
+79-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:71:13-51
 80            android:exported="false" />
-80-->C:\Users\NARZO\Desktop\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:72:13-37
+80-->E:\Major Projects\AscendInvest\admin\src\main\AndroidManifest.xml:72:13-37
 81        <activity
 81-->[com.google.firebase:firebase-auth:24.0.1] C:\Users\NARZO\.gradle\caches\8.13\transforms\1cb237a7b0fef5cd4bff6d2a18499265\transformed\firebase-auth-24.0.1\AndroidManifest.xml:29:9-46:20
 82            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
