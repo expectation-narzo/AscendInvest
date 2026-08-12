@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#FFFFFF"
+        android:id="@+id/main"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+       <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            app:elevation="0dp">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                app:contentInsetStart="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.9"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:id="@+id/menu_button"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:src="@drawable/ic_menu"
+                        app:tint="#64748B" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+
+
+                    <FrameLayout
+                        android:id="@+id/notification_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackgroundBorderless">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_notification"
+                            app:tint="#64748B" />
+
+                        <View
+                            android:id="@+id/notification_dot"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_gravity="top|end"
+                            android:background="@drawable/red_dot"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_launcher"
+                        app:shapeAppearanceOverlay="@style/CircleImage"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="#E2E8F0" />
+
+                </LinearLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#F1F5F9" />
+
+       </com.google.android.material.appbar.AppBarLayout>
+       <FrameLayout
+            android:id="@+id/content_container"
+            android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@drawable/bg_auth">
+
+            <!-- Dashboard Section -->
+            <include layout="@layout/section_dashboard" />
+
+            <!-- Deposits Section -->
+            <include layout="@layout/section_deposits" />
+
+            <!-- Withdraw Section -->
+            <include layout="@layout/section_withdraw" />
+
+            <!-- Refer and Earn Section -->
+            <include layout="@layout/section_refer" />
+
+            <!-- Team Section -->
+            <include layout="@layout/section_team" />
+
+            <!-- Plan Section -->
+            <include layout="@layout/section_plan" />
+
+            <!-- P2P Section -->
+            <include layout="@layout/section_p2p" />
+
+            <!-- Support Section -->
+            <include layout="@layout/section_support" />
+
+        </FrameLayout>
+    </LinearLayout>
+       <include layout="@layout/nav_drawer" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

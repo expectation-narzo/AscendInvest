@@ -1,0 +1,110 @@
+[
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_support_ticket_admin.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_support_ticket_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_user_search.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_user_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_chat_message.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_chat_message.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_user_detail.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_user_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_faq.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_faq.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_chat_receiver.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_chat_receiver.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_history_generic.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_history_generic.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-mergeDebugResources-47:/layout/activity_p2p_chat_admin.xml",
+        "source": "com.ascend.invest.admin-main-50:/layout/activity_p2p_chat_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\dialog_create_announcement.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\dialog_create_announcement.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_plans.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_plans.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_p2p_dispute.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_p2p_dispute.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_announcements.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_announcements.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_login.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_requests.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_requests.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_p2p_chat_admin.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_p2p_chat_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_transaction_search.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_transaction_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_chat_sender.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_chat_sender.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_faq_admin.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_faq_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_admin_main.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_admin_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_p2p.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_p2p.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_referral.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_referral.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_request.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_request.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_user.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_announcement_admin.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_announcement_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\dialog_edit_plan.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\dialog_edit_plan.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\activity_manage_links.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_links.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-mergeDebugResources-47:\\layout\\item_plan_admin.xml",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_plan_admin.xml"
+    }
+]

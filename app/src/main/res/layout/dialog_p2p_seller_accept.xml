@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incoming P2P Buy Request"
+        android:textColor="#1E293B"
+        android:textSize="20sp"
+        android:textFontWeight="800"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/tv_seller_prompt_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buyer wants to buy USDT"
+        android:textColor="#64748B"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#F8FAFC"
+        app:strokeWidth="1dp"
+        app:strokeColor="#E2E8F0"
+        android:layout_marginBottom="24dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You will Receive"
+                android:textColor="#64748B"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_seller_prompt_fiat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹0.00"
+                android:textColor="#1E293B"
+                android:textSize="24sp"
+                android:textFontWeight="900" />
+            <TextView
+                android:id="@+id/tv_seller_prompt_crypto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00 USDT"
+                android:textColor="#64748B"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_seller_accept"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="Accept Trade"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textFontWeight="700"
+        app:cornerRadius="14dp"
+        app:backgroundTint="@color/primary_purple" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_seller_ignore"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Ignore / Decline"
+        android:textColor="#64748B" />
+
+</LinearLayout>

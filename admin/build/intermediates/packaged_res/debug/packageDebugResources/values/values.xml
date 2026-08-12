@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent_blue">#38BDF8</color>
+    <color name="accent_blue_light">#F0F9FF</color>
+    <color name="black">#FF000000</color>
+    <color name="border_light">#E2E8F0</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="divider_color">#F1F5F9</color>
+    <color name="error_light">#FEF2F2</color>
+    <color name="error_red">#EF4444</color>
+    <color name="glass_white">#F8FAFC</color>
+    <color name="primary_dark">#4F46E5</color>
+    <color name="primary_light">#F5F7FF</color>
+    <color name="primary_purple">#6366F1</color>
+    <color name="primary_variant">#4338CA</color>
+    <color name="secondary_green">#10B981</color>
+    <color name="secondary_light">#F0FDF4</color>
+    <color name="surface_gray">#F8FAFC</color>
+    <color name="text_main">#0F172A</color>
+    <color name="text_secondary">#475569</color>
+    <color name="text_tertiary">#94A3B8</color>
+    <color name="warning_amber">#F59E0B</color>
+    <color name="warning_light">#FFFBEB</color>
+    <color name="white">#FFFFFFFF</color>
+    <dimen name="card_corner_radius">20dp</dimen>
+    <dimen name="header_height">240dp</dimen>
+    <dimen name="spacing_large">24dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <string name="app_name">Ascend Admin</string>
+    <string name="firebase_database_url" translatable="false">https://ascend-crypto-invest-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">195224670821</string>
+    <string name="google_api_key" translatable="false">AIzaSyDO3VAZgqLxKx1BbkKP3IaVEfKnVbwqS2Y</string>
+    <string name="google_app_id" translatable="false">1:195224670821:android:73fd8b3802925a85f52c8c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDO3VAZgqLxKx1BbkKP3IaVEfKnVbwqS2Y</string>
+    <string name="google_storage_bucket" translatable="false">ascend-crypto-invest.firebasestorage.app</string>
+    <string name="project_id" translatable="false">ascend-crypto-invest</string>
+    <style name="Base.Theme.AscendInvestAdmin" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_purple</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/secondary_green</item>
+        <item name="colorSecondaryVariant">@color/secondary_green</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="ShapeAppearance.Circle" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="Theme.AscendInvestAdmin" parent="Base.Theme.AscendInvestAdmin"/>
+</resources>

@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-purple: #6C5CE7;
+  --secondary-green: #28C76F;
+  --error-red: #E6656A;
+  --warning-orange: #FF9F43;
+  --bg-terminal: #0B0E14;
+  --text-dark: #1E293B;
+  --text-gray: #64748B;
+  --border-subtle: #F1F5F9;
+}
+
+@layer base {
+  body {
+    @apply bg-[#F8FAFC] text-[#1E293B] font-sans overflow-x-hidden;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Institutional Typography */
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* High-Density Card Design */
+.premium-card {
+  @apply bg-white border border-[#F1F5F9] rounded-[32px] transition-all duration-300;
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.03);
+}
+
+.premium-card:hover {
+  @apply border-primary/20;
+  box-shadow: 0 20px 40px -15px rgba(108, 92, 231, 0.08);
+}
+
+/* Terminal & Glassmorphism */
+.glass-terminal {
+  background: rgba(11, 14, 20, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px rgba(108, 92, 231, 0.15);
+}
+
+/* Animations */
+@keyframes slide-infinite {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-scan {
+  animation: slide-infinite 2s infinite linear;
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s infinite ease-in-out;
+}
+
+/* High-Contrast Badges */
+.badge-status {
+  @apply px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-gray-200 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-primary; }

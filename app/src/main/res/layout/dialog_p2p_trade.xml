@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_trade_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Pay the Seller"
+            android:textColor="#1E293B"
+            android:textSize="20sp"
+            android:textFontWeight="800" />
+
+        <TextView
+            android:id="@+id/tv_trade_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="14:59"
+            android:textColor="@color/error_red"
+            android:textSize="16sp"
+            android:textFontWeight="800"
+            android:background="#15E6656A"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="4dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please transfer the exact amount to the UPI ID below. Once paid, enter the Transaction ID and click 'I have paid'."
+        android:textColor="#64748B"
+        android:textSize="13sp"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Payment Info Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#F8FAFC"
+        app:strokeWidth="1dp"
+        app:strokeColor="#E2E8F0"
+        android:layout_marginBottom="24dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total to Pay"
+                android:textColor="#64748B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_trade_fiat_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹4,560.00"
+                android:textColor="#1E293B"
+                android:textSize="24sp"
+                android:textFontWeight="900" />
+
+            <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#E2E8F0" android:layout_marginVertical="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Seller UPI ID"
+                android:textColor="#64748B"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:id="@+id/tv_trade_upi_id"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="pay@upi"
+                    android:textColor="#1E293B"
+                    android:textSize="16sp"
+                    android:textFontWeight="700" />
+                <ImageView
+                    android:id="@+id/btn_copy_upi"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_copy"
+                    android:padding="6dp"
+                    app:tint="@color/primary_purple" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_trade_ref"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="UPI Transaction ID / Ref No"
+        app:boxCornerRadiusTopStart="12dp"
+        android:textColorHint="#64748B"
+        app:boxStrokeColor="@color/primary_purple"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusBottomEnd="12dp"
+        android:layout_marginBottom="24dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_trade_ref"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_mark_as_paid"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="I have paid"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:textFontWeight="700"
+        app:cornerRadius="14dp"
+        app:backgroundTint="@color/secondary_green" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_cancel_trade"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Cancel Order"
+        android:textColor="@color/error_red" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.ascend.invest.admin-mergeDebugResources-46:/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\NARZO\\.gradle\\caches\\8.13\\transforms\\9d42f2d4daa2e6689869180e74049799\\transformed\\appcompat-1.6.1\\res\\values-port\\values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

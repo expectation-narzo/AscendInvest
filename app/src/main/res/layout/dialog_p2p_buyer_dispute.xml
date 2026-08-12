@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trade Disputed"
+        android:textColor="@color/error_red"
+        android:textSize="20sp"
+        android:textFontWeight="800"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tv_dispute_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The seller claims they have not received your payment. If you have already paid, please file a complaint with proof of payment."
+        android:textColor="#64748B"
+        android:textSize="14sp"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_buyer_file_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:text="File a Complaint"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:textFontWeight="700"
+        app:cornerRadius="14dp"
+        app:backgroundTint="@color/primary_purple" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_buyer_close_dispute"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Close"
+        android:textColor="#64748B" />
+
+</LinearLayout>

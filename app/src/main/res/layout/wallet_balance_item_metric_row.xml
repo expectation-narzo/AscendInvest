@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="20dp">
+
+    <!-- Locked Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@drawable/transaction_item_bg"
+        android:backgroundTint="#F8F9FA">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_lock"
+                app:tint="#64748B" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Locked Assets"
+                android:fontFamily="@font/public_sans"
+                android:textFontWeight="600"
+                android:textColor="#64748B"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"/>
+
+            <TextView
+                android:id="@+id/tv_locked_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:textColor="#1E293B"
+                android:fontFamily="@font/public_sans"
+                android:textFontWeight="700"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/pb_locked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:progress="0"
+            app:indicatorColor="#FF8C42"
+            app:trackColor="#E2E8F0"
+            app:trackCornerRadius="4dp"
+            app:trackThickness="6dp" />
+    </LinearLayout>
+
+    <!-- Unlocked Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/transaction_item_bg"
+        android:backgroundTint="#F8F9FA">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_unlock"
+                app:tint="@color/primary_purple" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="Available for Withdrawal"
+                android:fontFamily="@font/public_sans"
+                android:textFontWeight="600"
+                android:textColor="#64748B"
+                android:textSize="12sp"
+                android:textAllCaps="true"
+                android:letterSpacing="0.05"/>
+
+            <TextView
+                android:id="@+id/tv_unlocked_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$0.00"
+                android:fontFamily="@font/public_sans"
+                android:textFontWeight="700"
+                android:textColor="#1E293B"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/pb_unlocked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:progress="0"
+            app:indicatorColor="@color/primary_purple"
+            app:trackColor="#E2E8F0"
+            app:trackCornerRadius="4dp"
+            app:trackThickness="6dp" />
+    </LinearLayout>
+
+</LinearLayout>

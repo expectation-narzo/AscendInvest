@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="#FFFFFF"
+    android:layout_margin="14dp"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter withdraw amount"
+            android:textColor="#2E2E2E"
+            android:textSize="16sp"
+            android:fontFamily="@font/public_sans"
+            android:textFontWeight="600"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/withdraw_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_amount"
+            android:textColorHint="#2E2E2E"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="#2E2E2E"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/user_withdrawal_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_wallet_address"
+            android:inputType="text"
+            android:textColorHint="#2E2E2E"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="#2E2E2E"
+            android:textSize="16sp" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/withdraw_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/withdraw"
+                app:backgroundTint="@color/error_red"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                app:cornerRadius="8dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:text="@string/minimum_withdrawal"
+            android:textColor="#9E9E9E"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

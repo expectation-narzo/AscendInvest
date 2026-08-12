@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Support Ticket"
+        android:textColor="#1E293B"
+        android:textSize="20sp"
+        android:fontFamily="@font/public_sans"
+        android:textFontWeight="800" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Describe your issue and we'll get back to you."
+        android:textColor="#64748B"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Subject"
+        android:textColor="#475569"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_ticket_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_bg"
+        android:backgroundTint="#F8FAFC"
+        android:textColorHint="#000000"
+        android:hint="e.g. Deposit not reflecting"
+        android:inputType="text"
+        android:paddingHorizontal="16dp"
+        android:textColor="#1E293B"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Detailed Description"
+        android:textColor="#475569"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_ticket_desc"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_bg"
+        android:backgroundTint="#F8FAFC"
+        android:gravity="top"
+        android:textColorHint="#000000"
+        android:hint="Provide as much detail as possible..."
+        android:inputType="textMultiLine"
+        android:padding="16dp"
+        android:textColor="#1E293B"
+        android:textSize="14sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit_ticket"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:text="Submit Ticket"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textFontWeight="700"
+        app:backgroundTint="@color/primary_purple"
+        app:cornerRadius="16dp" />
+
+</LinearLayout>

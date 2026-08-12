@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Payment Receipt"
+        android:textColor="#1E293B"
+        android:textSize="20sp"
+        android:textFontWeight="800"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The buyer claims to have paid. Please check your bank account/UPI app for the payment below."
+        android:textColor="#64748B"
+        android:textSize="13sp"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#F0FDF4"
+        app:strokeWidth="1dp"
+        app:strokeColor="#DCFCE7"
+        android:layout_marginBottom="24dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount to Receive"
+                android:textColor="#166534"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_release_fiat_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹4,560.00"
+                android:textColor="#166534"
+                android:textSize="24sp"
+                android:textFontWeight="900" />
+
+            <TextView
+                android:id="@+id/tv_release_ref"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Ref No: 4123987123"
+                android:textColor="#166534"
+                android:textSize="14sp"
+                android:textFontWeight="700" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="WARNING: Never release USDT until you see the money in your account. Screenshots can be faked. Once released, the transaction cannot be reversed."
+        android:textColor="@color/error_red"
+        android:textSize="12sp"
+        android:textFontWeight="700"
+        android:layout_marginBottom="24dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_confirm_release"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:textColor="#ffffff"
+        android:text="I have received the payment"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textFontWeight="700"
+        app:cornerRadius="14dp"
+        app:backgroundTint="@color/secondary_green" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_file_dispute"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="I didn't receive payment"
+        android:textColor="@color/error_red" />
+
+</LinearLayout>

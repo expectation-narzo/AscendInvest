@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="#FFFFFF"
+    android:layout_margin="14dp"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_usdt"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="5dp"
+                android:text="USDT"
+                android:textColor="#444"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/bep20_bg"
+                android:layout_marginStart="8dp"
+                android:text="BEP20"
+                android:textColor="#444"
+                android:textStyle="bold"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:background="@drawable/transaction_item_bg"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/iv_qr_code"
+                android:layout_width="180dp"
+                android:layout_height="220dp"
+                android:layout_marginBottom="12dp"
+                android:contentDescription="@string/qr_code_desc" />
+            <TextView
+                android:id="@+id/tv_my_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#6C5CE7"
+                android:textSize="12sp"
+                android:fontFamily="@font/public_sans"
+                android:gravity="center"
+                android:background="#F3F2FF"
+                android:padding="10dp"
+                android:textIsSelectable="true" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Input Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enter_deposit_details"
+            android:textColor="#2E2E2E"
+            android:textSize="16sp"
+            android:fontFamily="@font/public_sans"
+            android:textFontWeight="600"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/deposit_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_amount"
+            android:textColorHint="#2E2E2E"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="#2E2E2E"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/user_wallet_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/your_wallet_address"
+            android:inputType="text"
+            android:textColorHint="#2E2E2E"
+            android:background="@drawable/edit_text_bg"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="#2E2E2E"
+            android:textSize="16sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deposit_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_deposit"
+            app:backgroundTint="@color/secondary_green"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:textAllCaps="false"
+            app:cornerRadius="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/minimum_deposit"
+            android:textColor="#9E9E9E"
+            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

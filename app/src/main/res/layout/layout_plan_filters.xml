@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_bottom_sheet">
+
+    <View
+        android:layout_width="45dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:background="#D1D1D1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Refine Plans"
+            android:textColor="#1A1A1A"
+            android:textSize="22sp"
+            android:fontFamily="@font/public_sans"
+            android:textFontWeight="800"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:id="@+id/btnResetFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reset All"
+            android:textColor="@color/primary_purple"
+            android:textSize="14sp"
+            android:fontFamily="@font/public_sans"
+            android:textFontWeight="600"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+    </RelativeLayout>
+
+    <!-- Category Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Investment Category"
+        android:textColor="#4A4A4A"
+        android:textSize="15sp"
+        android:fontFamily="@font/public_sans"
+        android:textFontWeight="700"
+        android:layout_marginBottom="12dp"
+        android:letterSpacing="0.02"/>
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_marginBottom="28dp">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgCategories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:chipSpacingHorizontal="8dp">
+            <!-- Chips added dynamically -->
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- Sort Section -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort By"
+        android:textColor="#4A4A4A"
+        android:textSize="15sp"
+        android:fontFamily="@font/public_sans"
+        android:textFontWeight="700"
+        android:layout_marginBottom="12dp"
+        android:letterSpacing="0.02"/>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/cgSort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        app:chipSpacingHorizontal="8dp"
+        android:layout_marginBottom="28dp">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipLowToHigh"
+            style="@style/ProfessionalChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lowest Invest"
+            android:fontFamily="@font/public_sans" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipHighToLow"
+            style="@style/ProfessionalChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Highest Invest"
+            android:fontFamily="@font/public_sans" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <!-- Budget Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Budget Range"
+            android:textColor="#4A4A4A"
+            android:textSize="15sp"
+            android:fontFamily="@font/public_sans"
+            android:textFontWeight="700"
+            android:letterSpacing="0.02" />
+        <TextView
+            android:id="@+id/tvBudgetLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0 - $1000"
+            android:textColor="@color/primary_purple"
+            android:textSize="15sp"
+            android:fontFamily="@font/public_sans"
+            android:textFontWeight="700" />
+    </LinearLayout>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/rsBudget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:values="@array/initial_slider_values"
+        android:valueFrom="0.0"
+        android:valueTo="1000.0"
+        app:thumbColor="@color/primary_purple"
+        app:trackColorActive="@color/primary_purple"
+        app:trackColorInactive="#F1F2F6"
+        app:thumbRadius="10dp"
+        app:thumbElevation="4dp"
+        app:thumbStrokeColor="#FFFFFF"
+        app:thumbStrokeWidth="2dp"
+        app:trackHeight="8dp"
+        app:haloColor="#206C5CE7"
+        app:labelBehavior="gone"
+        android:layout_marginBottom="8dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:paddingHorizontal="4dp">
+        <TextView
+            android:id="@+id/tvMinBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$0"
+            android:textColor="#9E9E9E"
+            android:textSize="12sp"
+            android:fontFamily="@font/public_sans"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:id="@+id/tvMaxBudget"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$1000"
+            android:textColor="#9E9E9E"
+            android:textSize="12sp"
+            android:fontFamily="@font/public_sans"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnApplyFilters"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/button_bg_purple"
+        android:text="Apply Changes"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:fontFamily="@font/public_sans"
+        android:textFontWeight="700"
+        android:elevation="4dp" />
+
+</LinearLayout>

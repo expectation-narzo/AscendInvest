@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base Layer -->
+    <item>
+        <shape>
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Mesh Gradient Top Right -->
+    <item>
+        <shape>
+            <gradient
+                android:type="radial"
+                android:gradientRadius="600dp"
+                android:centerX="110%"
+                android:centerY="-10%"
+                android:startColor="#126C5CE7"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Mesh Gradient Bottom Left -->
+    <item>
+        <shape>
+            <gradient
+                android:type="radial"
+                android:gradientRadius="700dp"
+                android:centerX="-20%"
+                android:centerY="110%"
+                android:startColor="#0A6C5CE7"
+                android:endColor="#00000000" />
+        </shape>
+    </item>
+
+    <!-- Subtle Grid Overlay -->
+    <item>
+        <bitmap
+            android:src="@drawable/ic_logo_without_bg"
+            android:gravity="center"
+            android:alpha="0.02"
+            android:tileMode="repeat" />
+    </item>
+</layer-list>

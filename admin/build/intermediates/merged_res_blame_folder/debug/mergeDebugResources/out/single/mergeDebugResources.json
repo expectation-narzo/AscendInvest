@@ -1,0 +1,210 @@
+[
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_reply_bg.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\reply_bg.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/layout_activity_p2p_chat_admin.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/layout/activity_p2p_chat_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_links.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_links.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\font_publicsans_medium.ttf.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\font\\publicsans_medium.ttf"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_plans.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_plans.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_chat_message.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_chat_message.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_dialog_create_announcement.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\dialog_create_announcement.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_faq.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_faq.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_main_layout_cards_bg.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/main_layout_cards_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_total_deposit_chart_gradient.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\total_deposit_chart_gradient.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_chat_sender.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_chat_sender.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_admin_content_bg.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\admin_content_bg.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_bg_chat_sender.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/bg_chat_sender.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_dialog_edit_plan.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\dialog_edit_plan.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_bg_chat_receiver.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\bg_chat_receiver.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_referral.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_referral.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_total_net_earning_chart_gradient.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\total_net_earning_chart_gradient.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_user.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_user.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_bg_chat_receiver.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/bg_chat_receiver.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_chat_message_bg.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/chat_message_bg.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_icon_arrow_back_ios_round.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/icon_arrow_back_ios_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_support_ticket_admin.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_support_ticket_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_announcements.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_announcements.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_requests.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_requests.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_p2p_dispute.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_p2p_dispute.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_ic_logo.jpg.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\ic_logo.jpg"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_admin_main.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_admin_main.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_baseline_send_24.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/baseline_send_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_bg_chat_sender.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\bg_chat_sender.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\font_publicsans_semibold.ttf.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\font\\publicsans_semibold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\font_publicsans_regular.ttf.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\font\\publicsans_regular.ttf"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_bg_auth.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\bg_auth.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_total_profit_chart_gradient.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\total_profit_chart_gradient.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_faq_admin.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_faq_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_admin_header_bg.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\admin_header_bg.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_image_circle_bg.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/image_circle_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\font_public_sans.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\font\\public_sans.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_history_generic.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_history_generic.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\drawable_bg_chat_seller.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\drawable\\bg_chat_seller.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\font_publicsans_bold.ttf.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\font\\publicsans_bold.ttf"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_user_detail.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_user_detail.xml"
+    },
+    {
+        "merged": "com.ascend.invest.admin-debug-48:/drawable_baseline_search_24.xml.flat",
+        "source": "com.ascend.invest.admin-main-50:/drawable/baseline_search_24.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_chat_receiver.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_chat_receiver.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_manage_p2p.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_manage_p2p.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_transaction_search.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_transaction_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\font_publicsans_black.ttf.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\font\\publicsans_black.ttf"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_login.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_user_search.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_user_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_activity_p2p_chat_admin.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\activity_p2p_chat_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_plan_admin.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_plan_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_announcement_admin.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_announcement_admin.xml"
+    },
+    {
+        "merged": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-debug-48:\\layout_item_request.xml.flat",
+        "source": "C:\\Users\\NARZO\\.gradle\\daemon\\8.13\\com.ascend.invest.admin-main-50:\\layout\\item_request.xml"
+    }
+]

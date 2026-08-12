@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/section_p2p"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="gone"
+    android:background="#F8FAFC">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
+
+            <!-- Header Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="12dp"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="P2P Marketplace"
+                        android:textColor="@color/primary_purple"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Trade &amp; Transfer"
+                        android:textColor="#1E293B"
+                        android:textSize="22sp"
+                        android:fontFamily="@font/public_sans"
+                        android:textFontWeight="900" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_post_p2p_ad"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="+ Post Ad"
+                    android:textColor="@color/primary_purple"
+                    android:textSize="12sp"
+                    android:textFontWeight="700" />
+            </LinearLayout>
+
+
+            <!-- Balance Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:strokeWidth="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_p2p_card_premium">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:padding="24dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="AVAILABLE UNLOCKED PROFIT"
+                            android:textSize="9sp"
+                            android:textColor="#94A3B8"
+                            android:letterSpacing="0.1"
+                            android:textFontWeight="700" />
+
+                        <TextView
+                            android:id="@+id/tv_p2p_section_available"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="$0.00"
+                            android:textColor="#FFFFFF"
+                            android:textSize="30sp"
+                            android:fontFamily="@font/public_sans"
+                            android:textFontWeight="900" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/status_success_bg"
+                            android:backgroundTint="#2022C55E"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="10dp"
+                                android:layout_height="10dp"
+                                android:src="@drawable/ic_lock"
+                                app:tint="#22C55E" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="Verified Liquidity"
+                                android:textSize="9sp"
+                                android:textColor="#22C55E"
+                                android:textFontWeight="700" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginEnd="-30dp"
+                        android:layout_marginBottom="-30dp"
+                        android:src="@drawable/ic_logo_without_bg"
+                        android:alpha="0.05"
+                        android:rotation="-15" />
+
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Navigation Tabs -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#ffffff"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E2E8F0">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+                    <TextView
+                        android:id="@+id/tab_p2p_market"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Marketplace"
+                        android:gravity="center"
+                        android:textSize="13sp"
+                        android:textFontWeight="700"
+                        android:textColor="#000000"
+                        android:background="@drawable/menu_item_bg"
+                        android:backgroundTint="@color/primary_purple"
+                        android:clickable="true"
+                        android:focusable="true" />
+                    <TextView
+                        android:id="@+id/tab_p2p_my_ads"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="My Ads"
+                        android:gravity="center"
+                        android:textSize="13sp"
+                        android:textFontWeight="700"
+                        android:textColor="#64748B"
+                        android:clickable="true"
+                        android:focusable="true" />
+                    <TextView
+                        android:id="@+id/tab_p2p_direct"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Quick Transfer"
+                        android:gravity="center"
+                        android:textSize="13sp"
+                        android:textFontWeight="700"
+                        android:textColor="#64748B"
+                        android:clickable="true"
+                        android:focusable="true" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Disputed Trades Section (Only visible if active disputes exist) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_p2p_disputes_alert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="#FEF2F2"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#FEE2E2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="12dp"
+                    android:gravity="center_vertical">
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_lock"
+                        app:tint="#DC2626" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_dispute_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 Active Dispute"
+                            android:textColor="#991B1B"
+                            android:textSize="13sp"
+                            android:textFontWeight="800" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tap to chat with support team"
+                            android:textColor="#EF4444"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_open_disputes"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View"
+                        android:textColor="#DC2626"
+                        android:textSize="12sp"
+                        android:textFontWeight="700" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Marketplace Content -->
+            <LinearLayout
+                android:id="@+id/ll_p2p_market_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_p2p_marketplace"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+
+            <!-- My Ads Content -->
+            <LinearLayout
+                android:id="@+id/ll_p2p_my_ads_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_p2p_my_ads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+
+            <!-- Quick Transfer Content (Direct Transfer) -->
+            <LinearLayout
+                android:id="@+id/ll_p2p_direct_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <!-- Quick Transfer Content (Direct Transfer) -->
+                <LinearLayout
+                    android:id="@+id/ll_recent_p2p_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="24dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:text="Recent"
+                        android:textColor="#94A3B8"
+                        android:textSize="10sp"
+                        android:textFontWeight="800"
+                        android:textAllCaps="true"
+                        android:letterSpacing="0.05" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_recent_p2p"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:paddingHorizontal="16dp"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                </LinearLayout>
+
+                <!-- Main Engine Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="24dp"
+                    app:cardBackgroundColor="#ffffff"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="#E2E8F0">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Transfer Details"
+                            android:textColor="#1E293B"
+                            android:textSize="16sp"
+                            android:textFontWeight="700"
+                            android:layout_marginBottom="16dp" />
+
+                        <!-- Recipient -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:hint="Receiver UID"
+                            app:startIconDrawable="@drawable/ic_user"
+                            app:boxCornerRadiusTopStart="14dp"
+                            app:boxCornerRadiusBottomStart="14dp"
+                            app:boxCornerRadiusTopEnd="14dp"
+                            app:boxCornerRadiusBottomEnd="14dp"
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#64748B"
+                            app:boxStrokeColor="@color/primary_purple"
+                            app:startIconTint="#64748B">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_section_receiver_uid"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="text"
+                                android:textColorHint="#64748B"
+                                android:textSize="14sp"
+                                android:textColor="#000000"
+                                android:paddingVertical="12dp"
+                                android:fontFamily="@font/public_sans" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_verify_uid"
+                            style="@style/Widget.MaterialComponents.Button.TextButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_gravity="end"
+                            android:text="Verify UID"
+                            android:textColor="@color/primary_purple"
+                            android:textSize="12sp"
+                            android:textFontWeight="700" />
+
+                        <!-- Profile Preview -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cv_recipient_preview"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="#F0FDF4"
+                            app:cardCornerRadius="14dp"
+                            app:cardElevation="0dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="12dp"
+                                android:gravity="center_vertical">
+                                <ImageView
+                                    android:layout_width="28dp"
+                                    android:layout_height="28dp"
+                                    android:src="@drawable/green_dot"
+                                    android:padding="6dp"
+                                    android:background="@drawable/circle_bg_green" />
+                                <TextView
+                                    android:id="@+id/tv_verified_name"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginStart="12dp"
+                                    android:text="Verifying..."
+                                    android:textColor="#166534"
+                                    android:textSize="13sp"
+                                    android:textFontWeight="700" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Amount -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:hint="Amount (USDT)"
+                            app:startIconDrawable="@drawable/ic_deposit"
+                            app:boxCornerRadiusTopStart="14dp"
+                            app:boxCornerRadiusBottomStart="14dp"
+                            app:boxCornerRadiusTopEnd="14dp"
+                            app:hintTextColor="#64748B"
+                            android:textColorHint="#64748B"
+                            app:boxCornerRadiusBottomEnd="14dp"
+                            app:boxStrokeColor="@color/primary_purple"
+                            app:startIconTint="#64748B">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/et_section_transfer_amount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="numberDecimal"
+                                android:textSize="14sp"
+                                android:textColorHint="#64748B"
+                                android:textColor="#000000"
+                                android:paddingVertical="12dp"
+                                android:fontFamily="@font/public_sans" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <com.google.android.material.chip.ChipGroup
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:chipSpacingHorizontal="6dp">
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chip_10"
+                                    style="@style/Widget.MaterialComponents.Chip.Action"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="32dp"
+                                    android:text="$10"
+                                    android:textColor="#000000"
+                                    android:textSize="11sp"
+                                    app:chipBackgroundColor="#F8FAFC"
+                                    app:chipStrokeColor="#E2E8F0"
+                                    app:chipStrokeWidth="1dp" />
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chip_50"
+                                    style="@style/Widget.MaterialComponents.Chip.Action"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="32dp"
+                                    android:textColor="#000000"
+                                    android:text="$50"
+                                    android:textSize="11sp"
+                                    app:chipBackgroundColor="#F8FAFC"
+                                    app:chipStrokeColor="#E2E8F0"
+                                    app:chipStrokeWidth="1dp" />
+                                <com.google.android.material.chip.Chip
+                                    android:id="@+id/chip_100"
+                                    style="@style/Widget.MaterialComponents.Chip.Action"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="32dp"
+                                    android:text="$100"
+                                    android:textColor="#000000"
+                                    android:textSize="11sp"
+                                    app:chipBackgroundColor="#F8FAFC"
+                                    app:chipStrokeColor="#E2E8F0"
+                                    app:chipStrokeWidth="1dp" />
+                            </com.google.android.material.chip.ChipGroup>
+
+                            <TextView
+                                android:id="@+id/tv_btn_max"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MAX"
+                                android:textColor="@color/primary_purple"
+                                android:textSize="11sp"
+                                android:textFontWeight="800"
+                                android:paddingHorizontal="10dp"
+                                android:paddingVertical="6dp"
+                                android:background="@drawable/menu_item_bg"
+                                android:backgroundTint="#F5F3FF"
+                                android:clickable="true"
+                                android:focusable="true" />
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_section_p2p_transfer"
+                            android:layout_width="match_parent"
+                            android:layout_height="52dp"
+                            android:layout_marginTop="24dp"
+                            android:text="Send Assets Instantly"
+                            android:textAllCaps="false"
+                            android:textSize="15sp"
+                            android:textColor="#ffffff"
+                            android:textFontWeight="700"
+                            app:cornerRadius="14dp"
+                            app:backgroundTint="@color/primary_purple"
+                            app:elevation="4dp"
+                            android:drawableTint="#FFFFFF"
+                            app:iconTint="#ffffff"
+                            app:icon="@drawable/ic_lock"
+                            app:iconGravity="textStart"
+                            app:iconPadding="12dp" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="Zero fees for internal transfers"
+                            android:textAlignment="center"
+                            android:textColor="#94A3B8"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/public_sans" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Transactions Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:paddingHorizontal="24dp"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Transactions"
+                        android:textColor="#1E293B"
+                        android:textSize="17sp"
+                        android:textFontWeight="800" />
+
+                    <ImageView
+                        android:id="@+id/btn_refresh_p2p"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_clock"
+                        android:padding="8dp"
+                        app:tint="#64748B" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_p2p_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false" />
+
+                <TextView
+                    android:id="@+id/tv_empty_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No transactions recorded"
+                    android:gravity="center"
+                    android:padding="32dp"
+                    android:textColor="#94A3B8"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+
+
+

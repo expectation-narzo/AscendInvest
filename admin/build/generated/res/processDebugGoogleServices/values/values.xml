@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://ascend-crypto-invest-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">195224670821</string>
+    <string name="google_api_key" translatable="false">AIzaSyDO3VAZgqLxKx1BbkKP3IaVEfKnVbwqS2Y</string>
+    <string name="google_app_id" translatable="false">1:195224670821:android:73fd8b3802925a85f52c8c</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDO3VAZgqLxKx1BbkKP3IaVEfKnVbwqS2Y</string>
+    <string name="google_storage_bucket" translatable="false">ascend-crypto-invest.firebasestorage.app</string>
+    <string name="project_id" translatable="false">ascend-crypto-invest</string>
+</resources>
