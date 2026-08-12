@@ -136,6 +136,18 @@ The project includes a high-availability web platform built for scalability and 
 
 ---
 
+## 🗺️ Project Roadmap
+- [ ] **Phase 1:** Launch Beta for Android & Web.
+- [ ] **Phase 2:** Implement AI-based Trade Fraud Detection.
+- [ ] **Phase 3:** Integration with major Crypto Wallets (Metamask/TrustWallet).
+- [ ] **Phase 4:** Expand Investment Plans to include Real-World Assets (RWA).
+
+## 🤝 Contributing
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+
+## 🛡️ Security
+For information on security reporting, please see [SECURITY.md](SECURITY.md).
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
