@@ -1,15 +1,32 @@
+# Android - IDE
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.idea/
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+
+# Android - App
+app/google-services.json
+admin/google-services.json
+
+# Web - Dependencies
+website/node_modules/
+website/dist/
+website/.env
+
+# Web - Logs
+website/npm-debug.log*
+website/yarn-debug.log*
+website/yarn-error.log*
+
+# Server
+website/server/node_modules/
+website/server/.env
+
+# OS
+Thumbs.db
+desktop.ini
