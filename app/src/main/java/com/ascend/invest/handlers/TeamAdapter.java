@@ -1,13 +1,12 @@
 package com.ascend.invest.handlers;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ascend.invest.R;
+import com.ascend.invest.databinding.ItemTeamMemberBinding;
 
 import java.util.List;
 
@@ -22,23 +21,23 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     @NonNull
     @Override
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_team_member, parent, false);
-        return new TeamViewHolder(view);
+        ItemTeamMemberBinding binding = ItemTeamMemberBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new TeamViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder holder, int position) {
         TeamMember member = teamMembers.get(position);
-        holder.tvUsername.setText(member.getUsername());
-        holder.tvEmail.setText(member.getEmail());
-        holder.tvLevel.setText("Lvl " + member.getLevel());
+        holder.binding.tvTeamUsername.setText(member.getUsername());
+        holder.binding.tvTeamEmail.setText(member.getEmail());
+        holder.binding.tvMemberLevel.setText("Lvl " + member.getLevel());
         
         if (member.getLevel() == 2) {
-            holder.tvLevel.setTextColor(android.graphics.Color.parseColor("#7367F0"));
-            holder.tvLevel.setBackgroundResource(R.drawable.status_purple_bg);
+            holder.binding.tvMemberLevel.setTextColor(android.graphics.Color.parseColor("#7367F0"));
+            holder.binding.tvMemberLevel.setBackgroundResource(R.drawable.status_purple_bg);
         } else {
-            holder.tvLevel.setTextColor(android.graphics.Color.parseColor("#28C76F"));
-            holder.tvLevel.setBackgroundResource(R.drawable.status_success_bg);
+            holder.binding.tvMemberLevel.setTextColor(android.graphics.Color.parseColor("#28C76F"));
+            holder.binding.tvMemberLevel.setBackgroundResource(R.drawable.status_success_bg);
         }
     }
 
@@ -53,13 +52,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     }
 
     static class TeamViewHolder extends RecyclerView.ViewHolder {
-        TextView tvUsername, tvEmail, tvLevel;
+        final ItemTeamMemberBinding binding;
 
-        public TeamViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvUsername = itemView.findViewById(R.id.tv_team_username);
-            tvEmail = itemView.findViewById(R.id.tv_team_email);
-            tvLevel = itemView.findViewById(R.id.tv_member_level);
+        public TeamViewHolder(@NonNull ItemTeamMemberBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

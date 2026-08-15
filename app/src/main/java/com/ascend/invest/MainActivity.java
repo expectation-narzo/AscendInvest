@@ -40,6 +40,7 @@ import com.ascend.invest.handlers.UserHandler;
 import com.ascend.invest.handlers.WalletAddressHandler;
 import com.ascend.invest.handlers.WithdrawalHandler;
 import com.ascend.invest.QR.PremiumQRGenerator;
+import com.ascend.invest.databinding.ActivityHomeBinding;
 import com.github.mikephil.charting.charts.LineChart;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +59,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ActivityHomeBinding binding;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private String username = "user";
@@ -85,19 +87,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         // Initialize Notification Channels
-        com.ascend.invest.handlers.NotificationHelper.createNotificationChannels(this);
-
-        if (savedInstanceState != null) {
-            sessionWalletAddress = savedInstanceState.getString("session_wallet_address");
-        }
-
-        // Perform Integrity Shield Scan
-   //     SecurityManager.validateAppIntegrity(this);
-
-        setContentView(R.layout.activity_home);
         
-        View mainView = findViewById(R.id.main);
+        View mainView = binding.main;
         if (mainView != null) {
             ViewCompat.setOnApplyWindowInsetsListener(mainView, (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -260,13 +255,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initializeUI(String userId) {
-        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
-        ImageView menuButton = findViewById(R.id.menu_button);
+        DrawerLayout drawerLayout = binding.drawerLayout;
+        ImageView menuButton = binding.menuButton;
         menuButton.setOnClickListener(v -> drawerLayout.openDrawer(GravityCompat.START));
 
         // Update Drawer Info
-        TextView drawerUsername = findViewById(R.id.drawer_username);
-        TextView drawerUserid = findViewById(R.id.drawer_userid);
+        TextView drawerUsername = binding.layoutNavDrawer.drawerUsername;
+        TextView drawerUserid = binding.layoutNavDrawer.drawerUserid;
         if (drawerUsername != null) drawerUsername.setText(username);
         if (drawerUserid != null) {
             String shortId = userId.length() > 8 ? userId.substring(0, 8) : userId;
@@ -281,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
         initializeDrawerButtons(drawerLayout);
         
-        p2pHandler = new com.ascend.invest.handlers.P2PHandler(this, userId);
+        p2pHandler = new com.ascend.invest.handlers.P2PHandler(this, userId, binding.layoutP2p);
 
         // Prioritize Dashboard listeners for better initial experience
         setupDashboardBalanceListeners(userId);
@@ -292,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
             plan_control(userId);
             team_control(userId);
             referral_control(userId);
-            p2pHandler.setupP2PSection(findViewById(android.R.id.content));
+            p2pHandler.setupP2PSection();
             setupCharts(userId);
             fetchSupportTickets(userId);
             setupAnnouncements(userId);
@@ -301,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchLeaderboard() {
-        LinearLayout container = findViewById(R.id.ll_leaderboard_container);
+        LinearLayout container = binding.layoutRefer.llLeaderboardContainer;
         if (container == null) return;
 
         mDatabase.child("users").orderByChild("total_profit").limitToLast(5).addValueEventListener(new ValueEventListener() {
@@ -314,10 +309,7 @@ public class MainActivity extends AppCompatActivity {
 
                 int rank = 1;
                 for (DataSnapshot userSnap : users) {
-                    View itemView = getLayoutInflater().inflate(R.layout.item_leaderboard, container, false);
-                    TextView tvRank = itemView.findViewById(R.id.tv_rank);
-                    TextView tvName = itemView.findViewById(R.id.tv_rank_name);
-                    TextView tvEarnings = itemView.findViewById(R.id.tv_earnings);
+                    com.ascend.invest.databinding.ItemLeaderboardBinding itemBinding = com.ascend.invest.databinding.ItemLeaderboardBinding.inflate(getLayoutInflater(), container, false);
                     
                     String name = userSnap.child("username").getValue(String.class);
                     Object profitVal = userSnap.child("total_profit").getValue();
@@ -325,21 +317,21 @@ public class MainActivity extends AppCompatActivity {
                     if (profitVal instanceof Number) profit = ((Number) profitVal).doubleValue();
                     
                     if (name != null) {
-                        tvRank.setText(String.valueOf(rank));
+                        itemBinding.tvRank.setText(String.valueOf(rank));
                         if (rank == 1) {
-                            tvRank.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#FBBF24")));
-                            tvRank.setTextColor(Color.WHITE);
+                            itemBinding.tvRank.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#FBBF24")));
+                            itemBinding.tvRank.setTextColor(Color.WHITE);
                         } else if (rank == 2) {
-                            tvRank.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#94A3B8")));
-                            tvRank.setTextColor(Color.WHITE);
+                            itemBinding.tvRank.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#94A3B8")));
+                            itemBinding.tvRank.setTextColor(Color.WHITE);
                         } else if (rank == 3) {
-                            tvRank.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#B45309")));
-                            tvRank.setTextColor(Color.WHITE);
+                            itemBinding.tvRank.setBackgroundTintList(android.content.res.ColorStateList.valueOf(Color.parseColor("#B45309")));
+                            itemBinding.tvRank.setTextColor(Color.WHITE);
                         }
 
-                        tvName.setText(name);
-                        tvEarnings.setText("$" + String.format(Locale.US, "%.2f", profit));
-                        container.addView(itemView);
+                        itemBinding.tvRankName.setText(name);
+                        itemBinding.tvEarnings.setText("$" + String.format(Locale.US, "%.2f", profit));
+                        container.addView(itemBinding.getRoot());
                         rank++;
                     }
                 }
@@ -361,9 +353,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateBadges(long referralCount, double totalProfit) {
-        View b1 = findViewById(R.id.badge_newbie);
-        View b2 = findViewById(R.id.badge_pro);
-        View b3 = findViewById(R.id.badge_whale);
+        View b1 = binding.layoutRefer.badgeNewbie;
+        View b2 = binding.layoutRefer.badgePro;
+        View b3 = binding.layoutRefer.badgeWhale;
         
         // Dynamic Badge Activation
         if (b1 != null && (referralCount >= 1 || totalProfit >= 10)) b1.setAlpha(1.0f);
@@ -372,8 +364,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupAnnouncements(String userId) {
-        View notificationBtn = findViewById(R.id.notification_button);
-        View redDot = findViewById(R.id.notification_dot);
+        View notificationBtn = binding.notificationButton;
+        View redDot = binding.notificationDot;
         if (notificationBtn == null || redDot == null) return;
 
         mDatabase.child("announcement").addValueEventListener(new ValueEventListener() {
@@ -450,7 +442,7 @@ public class MainActivity extends AppCompatActivity {
                 Collections.reverse(ticketList);
                 if (ticketAdapter != null) ticketAdapter.notifyDataSetChanged();
                 
-                View container = findViewById(R.id.ll_my_tickets_container);
+                View container = binding.layoutSupport.llMyTicketsContainer;
                 if (container != null) {
                     container.setVisibility(ticketList.isEmpty() ? View.GONE : View.VISIBLE);
                 }
@@ -462,20 +454,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupCharts(String userId) {
-        LineChart depositChart = findViewById(R.id.total_deposit_line_chart);
+        LineChart depositChart = binding.layoutDashboard.layoutDeposit.totalDepositLineChart;
         if (depositChart != null) {
             depositChartHandler = new ChartHandler(depositChart, "deposit", "#FF8C42", R.drawable.total_deposit_chart_gradient);
             depositChartHandler.init(userId);
         }
 
-        LineChart profitChart = findViewById(R.id.salesChart);
+        LineChart profitChart = binding.layoutDashboard.layoutProfit.salesChart;
         if (profitChart != null) {
             // Net Earnings - Plan Profit Only - Green
             profitChartHandler = new ChartHandler(profitChart, "profit", "#28C76F", R.drawable.total_net_earning_chart_gradient, "Profit");
             profitChartHandler.init(userId);
         }
 
-        LineChart yieldChart = findViewById(R.id.yield_line_chart);
+        LineChart yieldChart = binding.layoutDashboard.layoutEarningReport.yieldLineChart;
         if (yieldChart != null) {
             // Yield Analytics - Both - Purple
             yieldChartHandler = new ChartHandler(yieldChart, "profit", "#6C5CE7", R.drawable.total_profit_chart_gradient);
@@ -484,26 +476,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupDashboardBalanceListeners(String userId) {
-        TextView tvWalletBalance = findViewById(R.id.tv_wallet_balance_value);
-        TextView tvTotalDeposit = findViewById(R.id.tv_total_deposit_value);
-        TextView tvTotalProfit = findViewById(R.id.tv_total_profit_value);
+        TextView tvWalletBalance = binding.layoutDashboard.layoutBalance.tvWalletBalanceValue;
+        TextView tvTotalDeposit = binding.layoutDashboard.layoutDeposit.tvTotalDepositValue;
+        TextView tvTotalProfit = binding.layoutDashboard.layoutProfit.tvTotalProfitValue;
         
-        TextView tvLockedValue = findViewById(R.id.tv_locked_value);
-        TextView tvUnlockedValue = findViewById(R.id.tv_unlocked_value);
-        com.google.android.material.progressindicator.LinearProgressIndicator pbLocked = findViewById(R.id.pb_locked);
-        com.google.android.material.progressindicator.LinearProgressIndicator pbUnlocked = findViewById(R.id.pb_unlocked);
+        TextView tvLockedValue = binding.layoutDashboard.layoutBalance.layoutMetrics.tvLockedValue;
+        TextView tvUnlockedValue = binding.layoutDashboard.layoutBalance.layoutMetrics.tvUnlockedValue;
+        com.google.android.material.progressindicator.LinearProgressIndicator pbLocked = binding.layoutDashboard.layoutBalance.layoutMetrics.pbLocked;
+        com.google.android.material.progressindicator.LinearProgressIndicator pbUnlocked = binding.layoutDashboard.layoutBalance.layoutMetrics.pbUnlocked;
 
         // New Balance TextViews in Dashboard/Deposit/Withdraw sections
-        TextView tvDepositBalance = findViewById(R.id.tv_deposit_wallet_balance);
-        TextView tvWithdrawAvailable = findViewById(R.id.tv_withdraw_available_balance);
-        TextView tvP2PAvailable = findViewById(R.id.tv_p2p_section_available);
-        TextView tvYieldTotal = findViewById(R.id.tvTotalValue);
+        TextView tvDepositBalance = binding.layoutDeposits.tvDepositWalletBalance;
+        TextView tvWithdrawAvailable = binding.layoutWithdraw.tvWithdrawAvailableBalance;
+        TextView tvP2PAvailable = binding.layoutP2p.tvP2pSectionAvailable;
+        TextView tvYieldTotal = binding.layoutDashboard.layoutEarningReport.tvTotalValue;
         
         // Earning Report Metrics
-        TextView tvEarningMetric = findViewById(R.id.tv_earning_metric_value);
-        TextView tvProfitMetric = findViewById(R.id.tv_profit_metric_value);
-        com.google.android.material.progressindicator.LinearProgressIndicator pbEarningMetric = findViewById(R.id.pb_earning_metric);
-        com.google.android.material.progressindicator.LinearProgressIndicator pbProfitMetric = findViewById(R.id.pb_profit_metric);
+        TextView tvEarningMetric = binding.layoutDashboard.layoutEarningReport.layoutMetrics.tvEarningMetricValue;
+        TextView tvProfitMetric = binding.layoutDashboard.layoutEarningReport.layoutMetrics.tvProfitMetricValue;
+        com.google.android.material.progressindicator.LinearProgressIndicator pbEarningMetric = binding.layoutDashboard.layoutEarningReport.layoutMetrics.pbEarningMetric;
+        com.google.android.material.progressindicator.LinearProgressIndicator pbProfitMetric = binding.layoutDashboard.layoutEarningReport.layoutMetrics.pbProfitMetric;
 
         UserHandler.getInstance().listenToUserData(userId, new ValueEventListener() {
             @Override
@@ -629,44 +621,44 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void initializeDrawerButtons(DrawerLayout drawerLayout) {
-        findViewById(R.id.dashboard_btn).setOnClickListener(v -> {
-            showSection(R.id.section_dashboard, R.id.dashboard_btn);
+        binding.layoutNavDrawer.dashboardBtn.setOnClickListener(v -> {
+            showSection(binding.layoutDashboard.getRoot().getId(), binding.layoutNavDrawer.dashboardBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
-        findViewById(R.id.refer_btn).setOnClickListener(v -> {
-            showSection(R.id.section_refer, R.id.refer_btn);
+        binding.layoutNavDrawer.referBtn.setOnClickListener(v -> {
+            showSection(binding.layoutRefer.getRoot().getId(), binding.layoutNavDrawer.referBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
-        findViewById(R.id.deposit_btn).setOnClickListener(v -> {
-            showSection(R.id.section_deposits, R.id.deposit_btn);
+        binding.layoutNavDrawer.depositBtn.setOnClickListener(v -> {
+            showSection(binding.layoutDeposits.getRoot().getId(), binding.layoutNavDrawer.depositBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
-        findViewById(R.id.withdraw_btn).setOnClickListener(v -> {
-            showSection(R.id.section_withdraw, R.id.withdraw_btn);
-            drawerLayout.closeDrawer(GravityCompat.START);
-        });
-
-        findViewById(R.id.p2p_btn).setOnClickListener(v -> {
-            showSection(R.id.section_p2p, R.id.p2p_btn);
+        binding.layoutNavDrawer.withdrawBtn.setOnClickListener(v -> {
+            showSection(binding.layoutWithdraw.getRoot().getId(), binding.layoutNavDrawer.withdrawBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
-        findViewById(R.id.team_btn).setOnClickListener(v -> {
-            showSection(R.id.section_team, R.id.team_btn);
+        binding.layoutNavDrawer.p2pBtn.setOnClickListener(v -> {
+            showSection(binding.layoutP2p.getRoot().getId(), binding.layoutNavDrawer.p2pBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
-        findViewById(R.id.plan_btn).setOnClickListener(v -> {
-            showSection(R.id.section_plan, R.id.plan_btn);
+        binding.layoutNavDrawer.teamBtn.setOnClickListener(v -> {
+            showSection(binding.layoutTeam.getRoot().getId(), binding.layoutNavDrawer.teamBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
-        findViewById(R.id.support_btn).setOnClickListener(v -> {
-            showSection(R.id.section_support, R.id.support_btn);
+        binding.layoutNavDrawer.planBtn.setOnClickListener(v -> {
+            showSection(binding.layoutPlan.getRoot().getId(), binding.layoutNavDrawer.planBtn.getId());
             drawerLayout.closeDrawer(GravityCompat.START);
         });
 
-        findViewById(R.id.logout_btn).setOnClickListener(v -> {
+        binding.layoutNavDrawer.supportBtn.setOnClickListener(v -> {
+            showSection(binding.layoutSupport.getRoot().getId(), binding.layoutNavDrawer.supportBtn.getId());
+            drawerLayout.closeDrawer(GravityCompat.START);
+        });
+
+        binding.layoutNavDrawer.logoutBtn.setOnClickListener(v -> {
             updateUserStatus(false);
             mAuth.signOut();
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -677,12 +669,12 @@ public class MainActivity extends AppCompatActivity {
         });
         
         // Default selection
-        updateDrawerSelection(R.id.dashboard_btn);
+        updateDrawerSelection(binding.layoutNavDrawer.dashboardBtn.getId());
         setupSupportSection();
     }
 
     private void setupSupportSection() {
-        RecyclerView rvTickets = findViewById(R.id.rv_support_tickets);
+        RecyclerView rvTickets = binding.layoutSupport.rvSupportTickets;
         if (rvTickets != null) {
             ticketAdapter = new SupportTicketAdapter(ticketList, this::showTicketDetail);
             rvTickets.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
@@ -692,7 +684,7 @@ public class MainActivity extends AppCompatActivity {
         initFaqs();
         fetchSupportUrls();
 
-        View telegramBtn = findViewById(R.id.btn_telegram_support);
+        View telegramBtn = binding.layoutSupport.btnTelegramSupport;
         if (telegramBtn != null) {
             telegramBtn.setOnClickListener(v -> {
                 if (telegramSupportUrl == null || telegramSupportUrl.isEmpty()) {
@@ -716,7 +708,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        View emailBtn = findViewById(R.id.btn_email_support);
+        View emailBtn = binding.layoutSupport.btnEmailSupport;
         if (emailBtn != null) {
             emailBtn.setOnClickListener(v -> {
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
@@ -730,7 +722,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        View openTicketBtn = findViewById(R.id.btn_open_ticket);
+        View openTicketBtn = binding.layoutSupport.btnOpenTicket;
         if (openTicketBtn != null) {
             openTicketBtn.setOnClickListener(v -> showCreateTicketDialog());
         }
@@ -738,60 +730,42 @@ public class MainActivity extends AppCompatActivity {
 
     private void showTicketDetail(SupportTicket ticket) {
         com.google.android.material.bottomsheet.BottomSheetDialog dialog = new com.google.android.material.bottomsheet.BottomSheetDialog(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_ticket_detail, null);
-        dialog.setContentView(view);
+        com.ascend.invest.databinding.DialogTicketDetailBinding dBinding = com.ascend.invest.databinding.DialogTicketDetailBinding.inflate(getLayoutInflater());
+        dialog.setContentView(dBinding.getRoot());
 
-        TextView tvTitle = view.findViewById(R.id.tv_detail_title);
-        TextView tvStatus = view.findViewById(R.id.tv_detail_status);
-        TextView tvDate = view.findViewById(R.id.tv_detail_date);
-        TextView tvDesc = view.findViewById(R.id.tv_detail_desc);
-        TextView tvAdminReply = view.findViewById(R.id.tv_detail_admin_reply);
-        View llAdminReply = view.findViewById(R.id.ll_detail_admin_reply);
-
-        tvTitle.setText(ticket.getTitle());
-        tvStatus.setText(ticket.getStatus());
-        tvDesc.setText(ticket.getDescription());
+        dBinding.tvDetailTitle.setText(ticket.getTitle());
+        dBinding.tvDetailStatus.setText(ticket.getStatus());
+        dBinding.tvDetailDesc.setText(ticket.getDescription());
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy • h:mm a", Locale.getDefault());
         String date = dateFormat.format(new Date(ticket.getTimestamp()));
-        tvDate.setText(date);
+        dBinding.tvDetailDate.setText(date);
 
         if (ticket.getAdminReply() != null && !ticket.getAdminReply().isEmpty()) {
-            llAdminReply.setVisibility(View.VISIBLE);
-            tvAdminReply.setText(ticket.getAdminReply());
+            dBinding.llDetailAdminReply.setVisibility(View.VISIBLE);
+            dBinding.tvDetailAdminReply.setText(ticket.getAdminReply());
         } else {
-            llAdminReply.setVisibility(View.GONE);
+            dBinding.llDetailAdminReply.setVisibility(View.GONE);
         }
 
         // Status Styling
         switch (ticket.getStatus()) {
             case "Resolved":
-                tvStatus.setTextColor(Color.parseColor("#22C55E"));
-                tvStatus.setBackgroundResource(R.drawable.bg_green_badge);
+                dBinding.tvDetailStatus.setTextColor(Color.parseColor("#22C55E"));
+                dBinding.tvDetailStatus.setBackgroundResource(R.drawable.bg_green_badge);
                 break;
             case "In Progress":
-                tvStatus.setTextColor(Color.parseColor("#3B82F6"));
-                tvStatus.setBackgroundResource(R.drawable.status_purple_bg);
+                dBinding.tvDetailStatus.setTextColor(Color.parseColor("#3B82F6"));
+                dBinding.tvDetailStatus.setBackgroundResource(R.drawable.status_purple_bg);
                 break;
             default:
-                tvStatus.setTextColor(Color.parseColor("#F59E0B"));
-                tvStatus.setBackgroundResource(R.drawable.status_pending_bg);
+                dBinding.tvDetailStatus.setTextColor(Color.parseColor("#F59E0B"));
+                dBinding.tvDetailStatus.setBackgroundResource(R.drawable.status_pending_bg);
                 break;
         }
 
-        // Find the button inside the view and set click listener
-        View closeBtn = null;
-        if (view instanceof android.view.ViewGroup) {
-            android.view.ViewGroup group = (android.view.ViewGroup) view;
-            for (int i = 0; i < group.getChildCount(); i++) {
-                View v = group.getChildAt(i);
-                if (v instanceof com.google.android.material.button.MaterialButton) {
-                    closeBtn = v;
-                    break;
-                }
-            }
-        }
-        if (closeBtn != null) closeBtn.setOnClickListener(v -> dialog.dismiss());
+        // The button is inside the binding
+        dBinding.btnCloseTicket.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
     }
@@ -846,7 +820,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {}
         });
 
-        RecyclerView rvFaqs = findViewById(R.id.rv_faqs);
+        RecyclerView rvFaqs = binding.layoutSupport.rvFaqs;
         if (rvFaqs != null) {
             faqAdapter = new FAQAdapter(displayedFaqs);
             rvFaqs.setLayoutManager(new androidx.recyclerview.widget.LinearLayoutManager(this));
@@ -859,7 +833,7 @@ public class MainActivity extends AppCompatActivity {
             rvFaqs.addItemDecoration(divider);
         }
 
-        TextView btnViewAll = findViewById(R.id.btn_view_all_faqs);
+        TextView btnViewAll = binding.layoutSupport.btnViewAllFaqs;
         if (btnViewAll != null) {
             btnViewAll.setOnClickListener(v -> {
                 if (displayedFaqs.size() < allFaqs.size()) {
@@ -872,7 +846,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
-        EditText etSearch = findViewById(R.id.et_search_faqs);
+        EditText etSearch = binding.layoutSupport.etSearchFaqs;
         if (etSearch != null) {
             etSearch.addTextChangedListener(new android.text.TextWatcher() {
                 @Override
@@ -903,11 +877,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void filterFaqs(String query) {
         displayedFaqs.clear();
-        TextView tvNoFaqs = findViewById(R.id.tv_no_faqs);
+        TextView tvNoFaqs = binding.layoutSupport.tvNoFaqs;
         
         if (query.isEmpty()) {
             updateDisplayedFaqs(false);
-            TextView btnViewAll = findViewById(R.id.btn_view_all_faqs);
+            TextView btnViewAll = binding.layoutSupport.btnViewAllFaqs;
             if (btnViewAll != null) btnViewAll.setText("View All");
             if (tvNoFaqs != null) tvNoFaqs.setVisibility(View.GONE);
         } else {
@@ -917,7 +891,7 @@ public class MainActivity extends AppCompatActivity {
                     displayedFaqs.add(faq);
                 }
             }
-            TextView btnViewAll = findViewById(R.id.btn_view_all_faqs);
+            TextView btnViewAll = binding.layoutSupport.btnViewAllFaqs;
             if (btnViewAll != null) btnViewAll.setText("Show All");
             
             if (tvNoFaqs != null) {
@@ -929,16 +903,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void showCreateTicketDialog() {
         com.google.android.material.bottomsheet.BottomSheetDialog dialog = new com.google.android.material.bottomsheet.BottomSheetDialog(this);
-        View view = getLayoutInflater().inflate(R.layout.dialog_create_ticket, null);
-        dialog.setContentView(view);
+        com.ascend.invest.databinding.DialogCreateTicketBinding dBinding = com.ascend.invest.databinding.DialogCreateTicketBinding.inflate(getLayoutInflater());
+        dialog.setContentView(dBinding.getRoot());
 
-        EditText etTitle = view.findViewById(R.id.et_ticket_title);
-        EditText etDesc = view.findViewById(R.id.et_ticket_desc);
-        View btnSubmit = view.findViewById(R.id.btn_submit_ticket);
-
-        btnSubmit.setOnClickListener(v -> {
-            String title = etTitle.getText().toString().trim();
-            String desc = etDesc.getText().toString().trim();
+        dBinding.btnSubmitTicket.setOnClickListener(v -> {
+            String title = dBinding.etTicketTitle.getText() != null ? dBinding.etTicketTitle.getText().toString().trim() : "";
+            String desc = dBinding.etTicketDesc.getText() != null ? dBinding.etTicketDesc.getText().toString().trim() : "";
 
             if (title.isEmpty() || desc.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
@@ -974,8 +944,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDrawerSelection(int selectedId) {
-        int[] navIds = {R.id.dashboard_btn, R.id.deposit_btn, R.id.withdraw_btn, R.id.p2p_btn,
-                        R.id.refer_btn, R.id.team_btn, R.id.plan_btn, R.id.support_btn};
+        int[] navIds = {binding.layoutNavDrawer.dashboardBtn.getId(), binding.layoutNavDrawer.depositBtn.getId(), binding.layoutNavDrawer.withdrawBtn.getId(), binding.layoutNavDrawer.p2pBtn.getId(),
+                        binding.layoutNavDrawer.referBtn.getId(), binding.layoutNavDrawer.teamBtn.getId(), binding.layoutNavDrawer.planBtn.getId(), binding.layoutNavDrawer.supportBtn.getId()};
         
         for (int id : navIds) {
             View btn = findViewById(id);
@@ -1009,36 +979,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void hideAllSections() {
-        int[] sections = {R.id.section_dashboard, R.id.section_deposits, R.id.section_withdraw, R.id.section_p2p,
-                R.id.section_refer, R.id.section_team, R.id.section_plan, R.id.section_support};
-        for (int id : sections) {
-            View v = findViewById(id);
+        View[] sections = {binding.layoutDashboard.getRoot(), binding.layoutDeposits.getRoot(), binding.layoutWithdraw.getRoot(), binding.layoutP2p.getRoot(),
+                binding.layoutRefer.getRoot(), binding.layoutTeam.getRoot(), binding.layoutPlan.getRoot(), binding.layoutSupport.getRoot()};
+        for (View v : sections) {
             if (v != null) v.setVisibility(View.GONE);
         }
     }
 
-    // withdraw and deposit history control
     private void transaction_control(String userId){
-        transactionHandler = new TransactionHandler(findViewById(android.R.id.content));
+        transactionHandler = new TransactionHandler(binding.layoutDeposits, binding.layoutWithdraw);
         transactionHandler.fetchTransactions(userId);
     }
 
     private void plan_control(String userId) {
-        planHandler = new PlanHandler(this, findViewById(android.R.id.content));
+        planHandler = new PlanHandler(this, binding.layoutPlan);
         planHandler.init(userId);
     }
 
     private void team_control(String userId) {
-        teamHandler = new TeamHandler(findViewById(android.R.id.content));
+        teamHandler = new TeamHandler(binding.layoutTeam);
         teamHandler.fetchTeam(userId);
     }
 
     private void referral_control(String userId) {
-        referralHandler = new ReferralHandler(findViewById(android.R.id.content));
+        referralHandler = new ReferralHandler(binding.layoutRefer);
         referralHandler.setupReferralSection(userId);
         
         withdrawalHandler = new WithdrawalHandler();
-        withdrawalHandler.setupWithdrawListeners(findViewById(android.R.id.content), userId);
+        withdrawalHandler.setupWithdrawListeners(binding.layoutWithdraw, userId);
     }
 
    // Deposit Flow
@@ -1049,13 +1017,13 @@ public class MainActivity extends AppCompatActivity {
                 Bitmap qr = PremiumQRGenerator.generate(address, 1000, logo);
                 
                 runOnUiThread(() -> {
-                    TextView wallet_address = findViewById(R.id.tv_my_address);
+                    TextView wallet_address = binding.layoutDeposits.tvMyAddress;
                     if (wallet_address != null) wallet_address.setText(address);
                     
-                    ImageView imageView = findViewById(R.id.iv_qr_code);
+                    ImageView imageView = binding.layoutDeposits.ivQrCode;
                     if (imageView != null) imageView.setImageBitmap(qr);
 
-                    View btnCopy = findViewById(R.id.btn_copy_address);
+                    View btnCopy = binding.layoutDeposits.btnCopyAddress;
                     if (btnCopy != null) {
                         btnCopy.setOnClickListener(v -> {
                             android.content.ClipboardManager clipboard = (android.content.ClipboardManager) getSystemService(android.content.Context.CLIPBOARD_SERVICE);
@@ -1066,7 +1034,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     depositHandler = new DepositHandler();
-                    depositHandler.setupDepositListeners(findViewById(android.R.id.content), uid, address);
+                    depositHandler.setupDepositListeners(binding.layoutDeposits, uid, address);
                 });
             } catch (Exception e) {
                 e.printStackTrace();

@@ -92,38 +92,56 @@
                 android:background="#F1F5F9" />
 
        </com.google.android.material.appbar.AppBarLayout>
-       <FrameLayout
+        <FrameLayout
             android:id="@+id/content_container"
             android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@drawable/bg_auth">
 
             <!-- Dashboard Section -->
-            <include layout="@layout/section_dashboard" />
+            <include
+                android:id="@+id/layout_dashboard"
+                layout="@layout/section_dashboard" />
 
             <!-- Deposits Section -->
-            <include layout="@layout/section_deposits" />
+            <include
+                android:id="@+id/layout_deposits"
+                layout="@layout/section_deposits" />
 
             <!-- Withdraw Section -->
-            <include layout="@layout/section_withdraw" />
+            <include
+                android:id="@+id/layout_withdraw"
+                layout="@layout/section_withdraw" />
 
             <!-- Refer and Earn Section -->
-            <include layout="@layout/section_refer" />
+            <include
+                android:id="@+id/layout_refer"
+                layout="@layout/section_refer" />
 
             <!-- Team Section -->
-            <include layout="@layout/section_team" />
+            <include
+                android:id="@+id/layout_team"
+                layout="@layout/section_team" />
 
             <!-- Plan Section -->
-            <include layout="@layout/section_plan" />
+            <include
+                android:id="@+id/layout_plan"
+                layout="@layout/section_plan" />
 
             <!-- P2P Section -->
-            <include layout="@layout/section_p2p" />
+            <include
+                android:id="@+id/layout_p2p"
+                layout="@layout/section_p2p" />
 
             <!-- Support Section -->
-            <include layout="@layout/section_support" />
+            <include
+                android:id="@+id/layout_support"
+                layout="@layout/section_support" />
 
         </FrameLayout>
     </LinearLayout>
-       <include layout="@layout/nav_drawer" />
+       <include
+           android:id="@+id/layout_nav_drawer"
+           layout="@layout/nav_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

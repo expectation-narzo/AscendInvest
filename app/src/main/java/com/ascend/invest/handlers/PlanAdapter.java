@@ -5,13 +5,11 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ascend.invest.R;
+import com.ascend.invest.databinding.ItemPlanBinding;
 import com.google.firebase.database.DataSnapshot;
 import java.util.List;
 import java.util.Locale;
@@ -51,30 +49,30 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     @NonNull
     @Override
     public PlanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_plan, parent, false);
-        return new PlanViewHolder(view);
+        ItemPlanBinding binding = ItemPlanBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new PlanViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PlanViewHolder holder, int position) {
         Plan plan = planList.get(position);
-        holder.tvPlanName.setText(plan.getName());
-        holder.tvPlanDescription.setText(plan.getDescription());
-        holder.tvInvestAmount.setText(String.format(Locale.getDefault(), "$%.2f", plan.getInvestAmount()));
-        holder.tvDailyProfit.setText(String.format(Locale.getDefault(), "$%.2f", plan.getDailyProfit()));
-        holder.tvTotalProfit.setText(String.format(Locale.getDefault(), "$%.2f", plan.getTotalProfit()));
-        holder.tvProfitPercentage.setText(String.format(Locale.getDefault(), "%.0f%%", plan.getProfitPercentage()));
-        holder.tvDuration.setText(String.format(Locale.getDefault(), "Duration: %d Days", plan.getDurationDays()));
+        holder.binding.tvPlanName.setText(plan.getName());
+        holder.binding.tvPlanDescription.setText(plan.getDescription());
+        holder.binding.tvInvestAmount.setText(String.format(Locale.getDefault(), "$%.2f", plan.getInvestAmount()));
+        holder.binding.tvDailyProfit.setText(String.format(Locale.getDefault(), "$%.2f", plan.getDailyProfit()));
+        holder.binding.tvTotalProfit.setText(String.format(Locale.getDefault(), "$%.2f", plan.getTotalProfit()));
+        holder.binding.tvProfitPercentage.setText(String.format(Locale.getDefault(), "%.0f%%", plan.getProfitPercentage()));
+        holder.binding.tvDuration.setText(String.format(Locale.getDefault(), "Duration: %d Days", plan.getDurationDays()));
 
         DataSnapshot activeData = activePlansData != null ? activePlansData.get(plan.getId()) : null;
         int purchaseCount = purchaseCountMap != null && purchaseCountMap.containsKey(plan.getId()) ? purchaseCountMap.get(plan.getId()) : 0;
         int limit = plan.getPurchaseLimit();
 
         if (activeData != null) {
-            holder.btnInvest.setVisibility(View.GONE);
-            holder.llActivePlanActions.setVisibility(View.VISIBLE);
-            if (holder.tvActiveBadge != null) holder.tvActiveBadge.setVisibility(View.VISIBLE);
-            if (holder.llActiveInsights != null) holder.llActiveInsights.setVisibility(View.VISIBLE);
+            holder.binding.btnInvest.setVisibility(View.GONE);
+            holder.binding.llActivePlanActions.setVisibility(View.VISIBLE);
+            if (holder.binding.tvActiveBadge != null) holder.binding.tvActiveBadge.setVisibility(View.VISIBLE);
+            if (holder.binding.llActiveInsights != null) holder.binding.llActiveInsights.setVisibility(View.VISIBLE);
 
             // Calculate progress and earned
             Long startTime = activeData.child("startTime").getValue(Long.class);
@@ -86,7 +84,7 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
                 
                 // Progress percentage
                 int progress = (int) Math.min(100, (elapsedTime * 100) / totalDurationMillis);
-                if (holder.pbPlanProgress != null) holder.pbPlanProgress.setProgress(progress);
+                if (holder.binding.pbPlanProgress != null) holder.binding.pbPlanProgress.setProgress(progress);
                 
                 // Earned so far (Actually claimed profit)
                 double claimedProfit = 0;
@@ -95,33 +93,33 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
                     claimedProfit = ((Number) claimedVal).doubleValue();
                 }
                 
-                if (holder.tvEarnedSoFar != null) {
-                    holder.tvEarnedSoFar.setText(String.format(Locale.getDefault(), "Earned: $%.2f", claimedProfit));
+                if (holder.binding.tvEarnedSoFar != null) {
+                    holder.binding.tvEarnedSoFar.setText(String.format(Locale.getDefault(), "Earned: $%.2f", claimedProfit));
                 }
 
                 long daysLeft = plan.getDurationDays() - (elapsedTime / oneDayMillis);
                 if (daysLeft < 0) daysLeft = 0;
-                holder.tvDuration.setText(String.format(Locale.getDefault(), "%d Days Left", daysLeft));
+                holder.binding.tvDuration.setText(String.format(Locale.getDefault(), "%d Days Left", daysLeft));
             }
 
             updateClaimButton(holder, plan, activeData);
         } else {
-            holder.btnInvest.setVisibility(View.VISIBLE);
-            holder.llActivePlanActions.setVisibility(View.GONE);
-            if (holder.tvActiveBadge != null) holder.tvActiveBadge.setVisibility(View.GONE);
-            if (holder.llActiveInsights != null) holder.llActiveInsights.setVisibility(View.GONE);
+            holder.binding.btnInvest.setVisibility(View.VISIBLE);
+            holder.binding.llActivePlanActions.setVisibility(View.GONE);
+            if (holder.binding.tvActiveBadge != null) holder.binding.tvActiveBadge.setVisibility(View.GONE);
+            if (holder.binding.llActiveInsights != null) holder.binding.llActiveInsights.setVisibility(View.GONE);
             
-            holder.tvDuration.setText(String.format(Locale.getDefault(), "%d Days", plan.getDurationDays()));
+            holder.binding.tvDuration.setText(String.format(Locale.getDefault(), "%d Days", plan.getDurationDays()));
 
             if (limit > 0 && purchaseCount >= limit) {
-                holder.btnInvest.setText("Limit Reached");
-                holder.btnInvest.setEnabled(false);
-                holder.btnInvest.setAlpha(0.6f);
+                holder.binding.btnInvest.setText("Limit Reached");
+                holder.binding.btnInvest.setEnabled(false);
+                holder.binding.btnInvest.setAlpha(0.6f);
             } else {
-                holder.btnInvest.setText("Activate Plan");
-                holder.btnInvest.setEnabled(true);
-                holder.btnInvest.setAlpha(1.0f);
-                holder.btnInvest.setOnClickListener(v -> {
+                holder.binding.btnInvest.setText("Activate Plan");
+                holder.binding.btnInvest.setEnabled(true);
+                holder.binding.btnInvest.setAlpha(1.0f);
+                holder.binding.btnInvest.setOnClickListener(v -> {
                     if (listener != null) listener.onInvestClick(plan);
                 });
             }
@@ -129,37 +127,37 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
         
         String category = plan.getCategory() != null ? plan.getCategory().toLowerCase() : "";
         if (!category.isEmpty()) {
-            holder.tvCategory.setText(category.toUpperCase());
-            holder.tvCategory.setVisibility(View.VISIBLE);
+            holder.binding.tvCategory.setText(category.toUpperCase());
+            holder.binding.tvCategory.setVisibility(View.VISIBLE);
             
             switch (category) {
                 case "bronze":
-                    holder.tvCategory.setBackgroundResource(R.drawable.bg_category_bronze);
-                    holder.tvCategory.setTextColor(android.graphics.Color.parseColor("#9A3412"));
+                    holder.binding.tvCategory.setBackgroundResource(R.drawable.bg_category_bronze);
+                    holder.binding.tvCategory.setTextColor(android.graphics.Color.parseColor("#9A3412"));
                     break;
                 case "silver":
-                    holder.tvCategory.setBackgroundResource(R.drawable.bg_category_silver);
-                    holder.tvCategory.setTextColor(android.graphics.Color.parseColor("#475569"));
+                    holder.binding.tvCategory.setBackgroundResource(R.drawable.bg_category_silver);
+                    holder.binding.tvCategory.setTextColor(android.graphics.Color.parseColor("#475569"));
                     break;
                 case "gold":
-                    holder.tvCategory.setBackgroundResource(R.drawable.bg_category_gold);
-                    holder.tvCategory.setTextColor(android.graphics.Color.parseColor("#92400E"));
+                    holder.binding.tvCategory.setBackgroundResource(R.drawable.bg_category_gold);
+                    holder.binding.tvCategory.setTextColor(android.graphics.Color.parseColor("#92400E"));
                     break;
                 case "platinum":
-                    holder.tvCategory.setBackgroundResource(R.drawable.bg_category_platinum);
-                    holder.tvCategory.setTextColor(android.graphics.Color.parseColor("#0F172A"));
+                    holder.binding.tvCategory.setBackgroundResource(R.drawable.bg_category_platinum);
+                    holder.binding.tvCategory.setTextColor(android.graphics.Color.parseColor("#0F172A"));
                     break;
                 case "diamond":
-                    holder.tvCategory.setBackgroundResource(R.drawable.bg_category_diamond);
-                    holder.tvCategory.setTextColor(android.graphics.Color.parseColor("#6C5CE7"));
+                    holder.binding.tvCategory.setBackgroundResource(R.drawable.bg_category_diamond);
+                    holder.binding.tvCategory.setTextColor(android.graphics.Color.parseColor("#6C5CE7"));
                     break;
                 default:
-                    holder.tvCategory.setBackgroundResource(R.drawable.bg_icon_grey);
-                    holder.tvCategory.setTextColor(android.graphics.Color.parseColor("#64748B"));
+                    holder.binding.tvCategory.setBackgroundResource(R.drawable.bg_icon_grey);
+                    holder.binding.tvCategory.setTextColor(android.graphics.Color.parseColor("#64748B"));
                     break;
             }
         } else {
-            holder.tvCategory.setVisibility(View.GONE);
+            holder.binding.tvCategory.setVisibility(View.GONE);
         }
     }
 
@@ -171,33 +169,33 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
         long nextClaimTime = lastClaim + (24L * 60L * 60L * 1000L);
         
         if (currentTime >= nextClaimTime) {
-            holder.btnClaimProfit.setEnabled(true);
-            holder.btnClaimProfit.setText("Collect Daily Profit");
-            holder.btnClaimProfit.setAlpha(1.0f);
-            holder.tvNextClaim.setText("Profit is ready to claim!");
-            if (holder.tvActiveBadge != null) {
-                holder.tvActiveBadge.setText("● PROFIT READY");
-                holder.tvActiveBadge.setBackgroundResource(R.drawable.bg_green_badge);
-                holder.tvActiveBadge.setTextColor(android.graphics.Color.parseColor("#22C55E"));
+            holder.binding.btnClaimProfit.setEnabled(true);
+            holder.binding.btnClaimProfit.setText("Collect Daily Profit");
+            holder.binding.btnClaimProfit.setAlpha(1.0f);
+            holder.binding.tvNextClaim.setText("Profit is ready to claim!");
+            if (holder.binding.tvActiveBadge != null) {
+                holder.binding.tvActiveBadge.setText("● PROFIT READY");
+                holder.binding.tvActiveBadge.setBackgroundResource(R.drawable.bg_green_badge);
+                holder.binding.tvActiveBadge.setTextColor(android.graphics.Color.parseColor("#22C55E"));
             }
-            holder.btnClaimProfit.setOnClickListener(v -> {
+            holder.binding.btnClaimProfit.setOnClickListener(v -> {
                 if (listener != null) listener.onClaimClick(plan, activeData);
             });
         } else {
-            holder.btnClaimProfit.setEnabled(false);
-            holder.btnClaimProfit.setText("Claimed");
-            holder.btnClaimProfit.setAlpha(0.6f);
+            holder.binding.btnClaimProfit.setEnabled(false);
+            holder.binding.btnClaimProfit.setText("Claimed");
+            holder.binding.btnClaimProfit.setAlpha(0.6f);
             
             long diff = nextClaimTime - currentTime;
             long hours = (diff / (60 * 60 * 1000)) % 24;
             long minutes = (diff / (60 * 1000)) % 60;
             long seconds = (diff / 1000) % 60;
             
-            holder.tvNextClaim.setText(String.format(Locale.getDefault(), "Next claim available in %02d:%02d:%02d", hours, minutes, seconds));
-            if (holder.tvActiveBadge != null) {
-                holder.tvActiveBadge.setText("● ACTIVE");
-                holder.tvActiveBadge.setBackgroundResource(R.drawable.status_purple_bg);
-                holder.tvActiveBadge.setTextColor(android.graphics.Color.parseColor("#6C5CE7"));
+            holder.binding.tvNextClaim.setText(String.format(Locale.getDefault(), "Next claim available in %02d:%02d:%02d", hours, minutes, seconds));
+            if (holder.binding.tvActiveBadge != null) {
+                holder.binding.tvActiveBadge.setText("● ACTIVE");
+                holder.binding.tvActiveBadge.setBackgroundResource(R.drawable.status_purple_bg);
+                holder.binding.tvActiveBadge.setTextColor(android.graphics.Color.parseColor("#6C5CE7"));
             }
         }
     }
@@ -208,29 +206,11 @@ public class PlanAdapter extends RecyclerView.Adapter<PlanAdapter.PlanViewHolder
     }
 
     static class PlanViewHolder extends RecyclerView.ViewHolder {
-        TextView tvPlanName, tvPlanDescription, tvInvestAmount, tvDailyProfit, tvTotalProfit, tvProfitPercentage, tvDuration, tvCategory, tvNextClaim, tvActiveBadge, tvEarnedSoFar;
-        Button btnInvest, btnClaimProfit;
-        LinearLayout llActivePlanActions, llActiveInsights;
-        com.google.android.material.progressindicator.LinearProgressIndicator pbPlanProgress;
+        final ItemPlanBinding binding;
 
-        public PlanViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvPlanName = itemView.findViewById(R.id.tvPlanName);
-            tvPlanDescription = itemView.findViewById(R.id.tvPlanDescription);
-            tvInvestAmount = itemView.findViewById(R.id.tvInvestAmount);
-            tvDailyProfit = itemView.findViewById(R.id.tvDailyProfit);
-            tvTotalProfit = itemView.findViewById(R.id.tvTotalProfit);
-            tvProfitPercentage = itemView.findViewById(R.id.tvProfitPercentage);
-            tvDuration = itemView.findViewById(R.id.tvDuration);
-            tvCategory = itemView.findViewById(R.id.tvCategory);
-            btnInvest = itemView.findViewById(R.id.btnInvest);
-            btnClaimProfit = itemView.findViewById(R.id.btnClaimProfit);
-            tvNextClaim = itemView.findViewById(R.id.tvNextClaim);
-            tvActiveBadge = itemView.findViewById(R.id.tvActiveBadge);
-            tvEarnedSoFar = itemView.findViewById(R.id.tvEarnedSoFar);
-            llActivePlanActions = itemView.findViewById(R.id.llActivePlanActions);
-            llActiveInsights = itemView.findViewById(R.id.llActiveInsights);
-            pbPlanProgress = itemView.findViewById(R.id.pbPlanProgress);
+        public PlanViewHolder(@NonNull ItemPlanBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }

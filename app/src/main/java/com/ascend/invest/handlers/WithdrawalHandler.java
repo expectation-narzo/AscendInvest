@@ -1,12 +1,10 @@
 package com.ascend.invest.handlers;
 
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 
-import com.ascend.invest.R;
+import com.ascend.invest.databinding.SectionWithdrawBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,35 +24,31 @@ public class WithdrawalHandler {
         this.mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void setupWithdrawListeners(View root, String userId) {
-        View withdrawButton = root.findViewById(R.id.withdraw_button);
-        if (withdrawButton == null) return;
+    public void setupWithdrawListeners(SectionWithdrawBinding binding, String userId) {
+        if (binding.withdrawButton == null) return;
 
-        withdrawButton.setOnClickListener(v -> {
-            EditText etAmount = root.findViewById(R.id.withdraw_amount);
-            EditText etAddress = root.findViewById(R.id.user_withdrawal_address);
+        binding.withdrawButton.setOnClickListener(v -> {
+            if (binding.withdrawAmount == null || binding.userWithdrawalAddress == null) return;
 
-            if (etAmount == null || etAddress == null) return;
-
-            String amount = etAmount.getText().toString().trim();
-            String userAddress = etAddress.getText().toString().trim();
+            String amount = binding.withdrawAmount.getText().toString().trim();
+            String userAddress = binding.userWithdrawalAddress.getText().toString().trim();
 
             if (TextUtils.isEmpty(amount) || TextUtils.isEmpty(userAddress)) {
-                Toast.makeText(root.getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
+                Toast.makeText(binding.getRoot().getContext(), "Please fill all fields", Toast.LENGTH_SHORT).show();
                 return;
             }
 
             createWithdrawalRequest(userId, amount, userAddress, new WithdrawalCallback() {
                 @Override
                 public void onSuccess(String requestId) {
-                    Toast.makeText(root.getContext(), "Withdrawal request submitted successfully", Toast.LENGTH_SHORT).show();
-                    etAmount.setText("");
-                    etAddress.setText("");
+                    Toast.makeText(binding.getRoot().getContext(), "Withdrawal request submitted successfully", Toast.LENGTH_SHORT).show();
+                    binding.withdrawAmount.setText("");
+                    binding.userWithdrawalAddress.setText("");
                 }
 
                 @Override
                 public void onFailure(String error) {
-                    Toast.makeText(root.getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(binding.getRoot().getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
                 }
             });
         });
@@ -76,8 +70,6 @@ public class WithdrawalHandler {
             return;
         }
 
-
-        // Check if user has enough unlocked balance and deduct it immediately
         UserHandler.getInstance().getUserDataFresh(userId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -94,7 +86,7 @@ public class WithdrawalHandler {
                     if (val instanceof Number) walletBalance = ((Number) val).doubleValue();
                 }
 
-                double requestAmount = 0;
+                double requestAmount;
                 try {
                     requestAmount = Double.parseDouble(amount);
                 } catch (NumberFormatException e) {
@@ -117,7 +109,6 @@ public class WithdrawalHandler {
                     return;
                 }
 
-                // Generate unique request ID
                 String requestId = UserHandler.getInstance().getTransactionsRef(userId, "withdraw").push().getKey();
                 if (requestId == null) {
                     callback.onFailure("Failed to generate request ID");
@@ -127,7 +118,6 @@ public class WithdrawalHandler {
                 long timestamp = System.currentTimeMillis();
                 String date = new SimpleDateFormat("MMM d, yyyy • h:mm a", Locale.getDefault()).format(new Date(timestamp));
 
-                // Create transaction data
                 Map<String, Object> transactionData = new HashMap<>();
                 transactionData.put("id", requestId);
                 transactionData.put("title", "Withdrawal Request");
@@ -138,13 +128,11 @@ public class WithdrawalHandler {
                 transactionData.put("timestamp", timestamp);
                 transactionData.put("userWalletAddress", userWalletAddress);
 
-                // Create admin request data (includes user info)
                 Map<String, Object> adminRequestData = new HashMap<>();
                 adminRequestData.putAll(transactionData);
                 adminRequestData.put("userId", userId);
                 adminRequestData.put("userWalletAddress", userWalletAddress);
 
-                // Update both locations AND deduct balance
                 Map<String, Object> userUpdates = new HashMap<>();
                 userUpdates.put("transactions/withdraw/" + requestId, transactionData);
                 userUpdates.put("wallet_balance", walletBalance - requestAmount);
@@ -157,15 +145,13 @@ public class WithdrawalHandler {
                         e -> callback.onFailure("Failed to create withdrawal request: " + e.getMessage()));
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            @Override public void onCancelled(@NonNull DatabaseError error) {
                 callback.onFailure("Database error: " + error.getMessage());
             }
         });
     }
 
     public void acceptWithdrawalRequest(String userId, String requestId, WithdrawalStatusCallback callback) {
-        // Just update status to Success and remove from admin location
         Map<String, Object> userUpdates = new HashMap<>();
         userUpdates.put("transactions/withdraw/" + requestId + "/status", "Success");
 
@@ -177,7 +163,6 @@ public class WithdrawalHandler {
     }
 
     public void rejectWithdrawalRequest(String userId, String requestId, WithdrawalStatusCallback callback) {
-        // Refund the amount to user balance and update status
         UserHandler.getInstance().getUserData(userId, new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot userSnapshot) {
@@ -220,14 +205,12 @@ public class WithdrawalHandler {
                         e -> callback.onFailure("Failed to reject withdrawal request: " + e.getMessage()));
             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            @Override public void onCancelled(@NonNull DatabaseError error) {
                 callback.onFailure("Database error: " + error.getMessage());
             }
         });
     }
 
-    // Callback interfaces
     public interface WithdrawalCallback {
         void onSuccess(String requestId);
         void onFailure(String error);

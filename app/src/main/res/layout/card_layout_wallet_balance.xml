@@ -74,7 +74,9 @@
             android:textAllCaps="true"
             android:letterSpacing="0.05"/>
 
-        <include layout="@layout/wallet_balance_item_metric_row" />
+        <include
+            android:id="@+id/layout_metrics"
+            layout="@layout/wallet_balance_item_metric_row" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

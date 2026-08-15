@@ -106,6 +106,7 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_close_ticket"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="32dp"

@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.ascend.invest.admin.databinding.ActivityP2pChatAdminBinding;
+import com.ascend.invest.admin.databinding.ItemChatReceiverBinding;
+import com.ascend.invest.admin.databinding.ItemChatSenderBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,50 +26,47 @@ import java.util.List;
 import java.util.Locale;
 
 public class ManageP2PChatActivity extends AppCompatActivity {
+    private ActivityP2pChatAdminBinding binding;
     private String orderId;
     private DatabaseReference mChatRef;
     private List<ChatMessage> messageList = new ArrayList<>();
     private ChatAdapter adapter;
-    private RecyclerView rvMessages;
-    private android.widget.EditText etInput;
     private P2POrder currentOrder;
     private String replyingToMsg = null;
     private String replyingToUser = null;
-    private View replyContainer;
-    private TextView tvReplyUser, tvReplyMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_p2p_chat_admin);
+        binding = ActivityP2pChatAdminBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         orderId = getIntent().getStringExtra("orderId");
         if (orderId == null) {
             finish();
             return;
         }
         mChatRef = FirebaseDatabase.getInstance().getReference().child("p2p_dispute_chats").child(orderId);
-        findViewById(R.id.btn_back).setOnClickListener(v -> finish());
-        rvMessages = findViewById(R.id.rv_chat_messages);
-        etInput = findViewById(R.id.message_input);
-        View btnSend = findViewById(R.id.btn_send_message);
-        // Reply UI
-        replyContainer = findViewById(R.id.ll_reply_input_container);
-        tvReplyUser = findViewById(R.id.tv_reply_input_user);
-        tvReplyMsg = findViewById(R.id.tv_reply_input_msg);
-        findViewById(R.id.btn_cancel_reply).setOnClickListener(v -> cancelReply());
+        binding.btnBack.setOnClickListener(v -> finish());
+        
+        binding.btnCancelReply.setOnClickListener(v -> cancelReply());
+        
         adapter = new ChatAdapter();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
-        rvMessages.setLayoutManager(layoutManager);
-        rvMessages.setAdapter(adapter);
-        btnSend.setOnClickListener(v -> sendMessage());
+        binding.rvChatMessages.setLayoutManager(layoutManager);
+        binding.rvChatMessages.setAdapter(adapter);
+        
+        binding.btnSendMessage.setOnClickListener(v -> sendMessage());
         fetchOrderDetails();
     }
+
     private void cancelReply(){
         replyingToMsg = null;
         replyingToUser = null;
-        replyContainer.setVisibility(View.GONE);
+        binding.llReplyInputContainer.setVisibility(View.GONE);
     }
+
     private void initiateReply(ChatMessage msg) {
         replyingToMsg = msg.message;
         if (msg.isAdmin) replyingToUser = "Support (You)";
@@ -75,12 +74,12 @@ public class ManageP2PChatActivity extends AppCompatActivity {
             if (msg.senderId.equals(currentOrder.buyerUid)) replyingToUser = currentOrder.buyerName + " (Buyer)";
             else replyingToUser = currentOrder.sellerName + " (Seller)";
         } else replyingToUser = "User";
-        tvReplyUser.setText("Replying to " + replyingToUser);
-        tvReplyMsg.setText(replyingToMsg);
-        replyContainer.setVisibility(View.VISIBLE);
-        etInput.requestFocus();
+        binding.tvReplyInputUser.setText("Replying to " + replyingToUser);
+        binding.tvReplyInputMsg.setText(replyingToMsg);
+        binding.llReplyInputContainer.setVisibility(View.VISIBLE);
+        binding.messageInput.requestFocus();
         android.view.inputmethod.InputMethodManager imm = (android.view.inputmethod.InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.showSoftInput(etInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT);
+        imm.showSoftInput(binding.messageInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT);
     }
 
     private void fetchOrderDetails() {
@@ -90,10 +89,8 @@ public class ManageP2PChatActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         currentOrder = snapshot.getValue(P2POrder.class);
                         if (currentOrder != null) {
-                            TextView tvSubtitle = findViewById(R.id.tv_chat_subtitle);
-                            tvSubtitle.setText("Trade #" + orderId.substring(0, Math.min(orderId.length(), 8)));
-                            TextView tvTitle = findViewById(R.id.tv_chat_title);
-                            tvTitle.setText(currentOrder.buyerName + " vs " + currentOrder.sellerName);
+                            binding.tvChatSubtitle.setText("Trade #" + orderId.substring(0, Math.min(orderId.length(), 8)));
+                            binding.tvChatTitle.setText(currentOrder.buyerName + " vs " + currentOrder.sellerName);
                             listenForMessages();
                         } else {
                             Toast.makeText(ManageP2PChatActivity.this, "Order details not found", Toast.LENGTH_SHORT).show();
@@ -103,6 +100,7 @@ public class ManageP2PChatActivity extends AppCompatActivity {
                     @Override public void onCancelled(@NonNull DatabaseError error) {}
                 });
     }
+
     private void listenForMessages() {
         mChatRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,17 +111,18 @@ public class ManageP2PChatActivity extends AppCompatActivity {
                     if (msg != null) messageList.add(msg);
                 }
                 adapter.notifyDataSetChanged();
-                rvMessages.scrollToPosition(Math.max(0, messageList.size() - 1));
+                binding.rvChatMessages.scrollToPosition(Math.max(0, messageList.size() - 1));
             }
             @Override public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
+
     private void sendMessage() {
-        String text = etInput.getText().toString().trim();
+        String text = binding.messageInput.getText().toString().trim();
         if (text.isEmpty()) return;
         ChatMessage msg = new ChatMessage("ADMIN", text, true, replyingToMsg, replyingToUser);
         mChatRef.push().setValue(msg);
-        etInput.setText("");
+        binding.messageInput.setText("");
         cancelReply();
     }
 
@@ -149,9 +148,9 @@ public class ManageP2PChatActivity extends AppCompatActivity {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             if (viewType == VIEW_TYPE_SENDER) {
-                return new SenderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_sender, parent, false));
+                return new SenderViewHolder(ItemChatSenderBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
             } else {
-                return new ReceiverViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat_receiver, parent, false));
+                return new ReceiverViewHolder(ItemChatReceiverBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
             }
         }
         @Override
@@ -160,34 +159,34 @@ public class ManageP2PChatActivity extends AppCompatActivity {
             String time = new SimpleDateFormat("h:mm a", Locale.getDefault()).format(new Date(msg.timestamp));
             if (holder instanceof SenderViewHolder) {
                 SenderViewHolder vh = (SenderViewHolder) holder;
-                vh.tvMsg.setText(msg.message);
-                vh.tvTime.setText(time + " (You)");
+                vh.binding.tvSenderMsg.setText(msg.message);
+                vh.binding.tvSenderTime.setText(time + " (You)");
                 if (msg.replyToMsg != null) {
-                    vh.llReply.setVisibility(View.VISIBLE);
-                    vh.tvReplyUser.setText(msg.replyToUser);
-                    vh.tvReplyMsg.setText(msg.replyToMsg);
-                } else vh.llReply.setVisibility(View.GONE);
+                    vh.binding.llReplySender.setVisibility(View.VISIBLE);
+                    vh.binding.tvReplyUserSender.setText(msg.replyToUser);
+                    vh.binding.tvReplyMsgSender.setText(msg.replyToMsg);
+                } else vh.binding.llReplySender.setVisibility(View.GONE);
             } else {
                 ReceiverViewHolder vh = (ReceiverViewHolder) holder;
-                vh.tvMsg.setText(msg.message);
-                vh.tvTime.setText(time);
+                vh.binding.tvReceiverMsg.setText(msg.message);
+                vh.binding.tvReceiverTime.setText(time);
                 if (currentOrder != null) {
-                    if (msg.senderId.equals(currentOrder.buyerUid)) {
-                        vh.tvName.setText(currentOrder.buyerName + " (Buyer)");
-                        vh.tvName.setTextColor(getTelegramNameColor(msg.senderId));
-                    } else if (msg.senderId.equals(currentOrder.sellerUid)) {
-                        vh.tvName.setText(currentOrder.sellerName + " (Seller)");
-                        vh.tvName.setTextColor(getTelegramNameColor(msg.senderId));
+                    if (msg.senderId != null && msg.senderId.equals(currentOrder.buyerUid)) {
+                        vh.binding.tvReceiverName.setText(currentOrder.buyerName + " (Buyer)");
+                        vh.binding.tvReceiverName.setTextColor(getTelegramNameColor(msg.senderId));
+                    } else if (msg.senderId != null && msg.senderId.equals(currentOrder.sellerUid)) {
+                        vh.binding.tvReceiverName.setText(currentOrder.sellerName + " (Seller)");
+                        vh.binding.tvReceiverName.setTextColor(getTelegramNameColor(msg.senderId));
                     } else {
-                        vh.tvName.setText("User");
-                        vh.tvName.setTextColor(getTelegramNameColor(msg.senderId));
+                        vh.binding.tvReceiverName.setText("User");
+                        vh.binding.tvReceiverName.setTextColor(getTelegramNameColor(msg.senderId != null ? msg.senderId : "0"));
                     }
                 }
                 if (msg.replyToMsg != null) {
-                    vh.llReply.setVisibility(View.VISIBLE);
-                    vh.tvReplyUser.setText(msg.replyToUser);
-                    vh.tvReplyMsg.setText(msg.replyToMsg);
-                } else vh.llReply.setVisibility(View.GONE);
+                    vh.binding.llReplyReceiver.setVisibility(View.VISIBLE);
+                    vh.binding.tvReplyUserReceiver.setText(msg.replyToUser);
+                    vh.binding.tvReplyMsgReceiver.setText(msg.replyToMsg);
+                } else vh.binding.llReplyReceiver.setVisibility(View.GONE);
             }
             holder.itemView.setOnLongClickListener(v -> {
                 initiateReply(msg);
@@ -196,29 +195,12 @@ public class ManageP2PChatActivity extends AppCompatActivity {
         }
         @Override public int getItemCount() { return messageList.size(); }
         class SenderViewHolder extends RecyclerView.ViewHolder {
-            TextView tvMsg, tvTime, tvReplyUser, tvReplyMsg;
-            View llReply;
-            SenderViewHolder(View v) {
-                super(v);
-                tvMsg = v.findViewById(R.id.tv_sender_msg);
-                tvTime = v.findViewById(R.id.tv_sender_time);
-                llReply = v.findViewById(R.id.ll_reply_sender);
-                tvReplyUser = v.findViewById(R.id.tv_reply_user_sender);
-                tvReplyMsg = v.findViewById(R.id.tv_reply_msg_sender);
-            }
+            ItemChatSenderBinding binding;
+            SenderViewHolder(ItemChatSenderBinding b) { super(b.getRoot()); this.binding = b; }
         }
         class ReceiverViewHolder extends RecyclerView.ViewHolder {
-            TextView tvMsg, tvTime, tvName, tvReplyUser, tvReplyMsg;
-            View llReply;
-            ReceiverViewHolder(View v) {
-                super(v);
-                tvMsg = v.findViewById(R.id.tv_receiver_msg);
-                tvTime = v.findViewById(R.id.tv_receiver_time);
-                tvName = v.findViewById(R.id.tv_receiver_name);
-                llReply = v.findViewById(R.id.ll_reply_receiver);
-                tvReplyUser = v.findViewById(R.id.tv_reply_user_receiver);
-                tvReplyMsg = v.findViewById(R.id.tv_reply_msg_receiver);
-            }
+            ItemChatReceiverBinding binding;
+            ReceiverViewHolder(ItemChatReceiverBinding b) { super(b.getRoot()); this.binding = b; }
         }
     }
 }

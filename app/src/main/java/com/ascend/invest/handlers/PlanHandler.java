@@ -5,19 +5,16 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.ascend.invest.R;
+import com.ascend.invest.databinding.LayoutPlanFiltersBinding;
+import com.ascend.invest.databinding.SectionPlanBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
-import com.google.android.material.slider.RangeSlider;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,47 +33,39 @@ import java.util.Set;
 
 public class PlanHandler {
 
-    private Context context;
-    private RecyclerView rvPlans;
-    private ViewPager2 vpBanners;
-    private TabLayout bannerIndicator;
+    private final Context context;
+    private final SectionPlanBinding binding;
 
     private PlanAdapter adapter;
     private BannerAdapter bannerAdapter;
 
-    private Handler autoScrollHandler = new Handler(Looper.getMainLooper());
+    private final Handler autoScrollHandler = new Handler(Looper.getMainLooper());
     private Runnable autoScrollRunnable;
-    private static final long AUTO_SCROLL_DELAY = 4000; // 4 seconds
+    private static final long AUTO_SCROLL_DELAY = 4000;
 
-    private List<Plan> allPlans = new ArrayList<>();
-    private List<Plan> filteredPlans = new ArrayList<>();
-    private List<Plan> bannerList = new ArrayList<>();
+    private final List<Plan> allPlans = new ArrayList<>();
+    private final List<Plan> filteredPlans = new ArrayList<>();
+    private final List<Plan> bannerList = new ArrayList<>();
 
-    private Map<String, DataSnapshot> activePlansData = new HashMap<>();
-    private Map<String, Integer> purchaseCountMap = new HashMap<>();
-    private double userBalance = 0.0;
+    private final Map<String, DataSnapshot> activePlansData = new HashMap<>();
+    private final Map<String, Integer> purchaseCountMap = new HashMap<>();
 
-    // Filter State
     private String selectedCategory = "All";
-    private Set<String> availableCategories = new HashSet<>();
+    private final Set<String> availableCategories = new HashSet<>();
     private float minBudget = 0, maxBudget = 1000;
     private float currentMin = 0, currentMax = 1000;
     private boolean isLowToHigh = true;
 
-    private DatabaseReference mDatabase;
+    private final DatabaseReference mDatabase;
     private String userId;
 
-    public PlanHandler(Context context, View rootView) {
+    public PlanHandler(Context context, SectionPlanBinding binding) {
         this.context = context;
+        this.binding = binding;
         this.mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        this.rvPlans = rootView.findViewById(R.id.rv_plans);
-        this.vpBanners = rootView.findViewById(R.id.vp_banners);
-        this.bannerIndicator = rootView.findViewById(R.id.banner_indicator);
-
-        View btnToggleFilter = rootView.findViewById(R.id.btnToggleFilter);
-        if (btnToggleFilter != null) {
-            btnToggleFilter.setOnClickListener(v -> showFilterDialog());
+        if (binding.btnToggleFilter != null) {
+            binding.btnToggleFilter.setOnClickListener(v -> showFilterDialog());
         }
 
         setupRecyclerViews();
@@ -94,13 +83,13 @@ public class PlanHandler {
                 claimProfit(plan, activeData, false);
             }
         });
-        rvPlans.setLayoutManager(new LinearLayoutManager(context));
-        rvPlans.setAdapter(adapter);
+        binding.rvPlans.setLayoutManager(new LinearLayoutManager(context));
+        binding.rvPlans.setAdapter(adapter);
 
         bannerAdapter = new BannerAdapter(bannerList, plan -> scrollToPlan(plan.getId()));
-        vpBanners.setAdapter(bannerAdapter);
+        binding.vpBanners.setAdapter(bannerAdapter);
 
-        new TabLayoutMediator(bannerIndicator, vpBanners, (tab, position) -> {}).attach();
+        new TabLayoutMediator(binding.bannerIndicator, binding.vpBanners, (tab, position) -> {}).attach();
 
         setupAutoScroll();
     }
@@ -110,14 +99,14 @@ public class PlanHandler {
             @Override
             public void run() {
                 if (bannerList.size() > 1) {
-                    int nextItem = (vpBanners.getCurrentItem() + 1) % bannerList.size();
-                    vpBanners.setCurrentItem(nextItem, true);
+                    int nextItem = (binding.vpBanners.getCurrentItem() + 1) % bannerList.size();
+                    binding.vpBanners.setCurrentItem(nextItem, true);
                 }
                 autoScrollHandler.postDelayed(this, AUTO_SCROLL_DELAY);
             }
         };
 
-        vpBanners.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+        binding.vpBanners.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -129,22 +118,14 @@ public class PlanHandler {
 
     private void showFilterDialog() {
         BottomSheetDialog dialog = new BottomSheetDialog(context);
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_plan_filters, null);
-        dialog.setContentView(view);
+        LayoutPlanFiltersBinding dBinding = LayoutPlanFiltersBinding.inflate(LayoutInflater.from(context));
+        dialog.setContentView(dBinding.getRoot());
 
-        ChipGroup cgCategories = view.findViewById(R.id.cgCategories);
-        ChipGroup cgSort = view.findViewById(R.id.cgSort);
-        RangeSlider rsBudget = view.findViewById(R.id.rsBudget);
-        TextView tvBudgetLabel = view.findViewById(R.id.tvBudgetLabel);
-        TextView tvMinBudget = view.findViewById(R.id.tvMinBudget);
-        TextView tvMaxBudget = view.findViewById(R.id.tvMaxBudget);
-        TextView btnReset = view.findViewById(R.id.btnResetFilters);
+        if (dBinding.tvMinBudget != null) dBinding.tvMinBudget.setText(String.format(Locale.getDefault(), "$%.0f", minBudget));
+        if (dBinding.tvMaxBudget != null) dBinding.tvMaxBudget.setText(String.format(Locale.getDefault(), "$%.0f", maxBudget));
 
-        if (tvMinBudget != null) tvMinBudget.setText(String.format(Locale.getDefault(), "$%.0f", minBudget));
-        if (tvMaxBudget != null) tvMaxBudget.setText(String.format(Locale.getDefault(), "$%.0f", maxBudget));
-
-        if (btnReset != null) {
-            btnReset.setOnClickListener(v -> {
+        if (dBinding.btnResetFilters != null) {
+            dBinding.btnResetFilters.setOnClickListener(v -> {
                 selectedCategory = "All";
                 currentMin = minBudget;
                 currentMax = maxBudget;
@@ -154,18 +135,16 @@ public class PlanHandler {
             });
         }
 
-        // Setup Sorting
         if (isLowToHigh) {
-            cgSort.check(R.id.chipLowToHigh);
+            dBinding.cgSort.check(R.id.chipLowToHigh);
         } else {
-            cgSort.check(R.id.chipHighToLow);
+            dBinding.cgSort.check(R.id.chipHighToLow);
         }
 
-        // Setup Categories
         List<String> sortedCats = new ArrayList<>(availableCategories);
         Collections.sort(sortedCats);
         for (String cat : sortedCats) {
-            Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.item_filter_chip, cgCategories, false);
+            Chip chip = (Chip) LayoutInflater.from(context).inflate(R.layout.item_filter_chip, dBinding.cgCategories, false);
             chip.setText(cat);
             chip.setCheckable(true);
             if (cat.equals(selectedCategory)) chip.setChecked(true);
@@ -173,28 +152,27 @@ public class PlanHandler {
             chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 if (isChecked) selectedCategory = cat;
             });
-            cgCategories.addView(chip);
+            dBinding.cgCategories.addView(chip);
         }
 
-        // Setup Budget Slider
         float sliderMax = maxBudget > minBudget ? maxBudget : minBudget + 1;
-        rsBudget.setValueFrom(minBudget);
-        rsBudget.setValueTo(sliderMax);
-        rsBudget.setValues(currentMin, currentMax);
+        dBinding.rsBudget.setValueFrom(minBudget);
+        dBinding.rsBudget.setValueTo(sliderMax);
+        dBinding.rsBudget.setValues(currentMin, currentMax);
 
-        tvBudgetLabel.setText(String.format(Locale.getDefault(), "$%.0f - $%.0f", currentMin, currentMax));
+        dBinding.tvBudgetLabel.setText(String.format(Locale.getDefault(), "$%.0f - $%.0f", currentMin, currentMax));
 
-        rsBudget.addOnChangeListener((slider, value, fromUser) -> {
+        dBinding.rsBudget.addOnChangeListener((slider, value, fromUser) -> {
             List<Float> values = slider.getValues();
-            tvBudgetLabel.setText(String.format(Locale.getDefault(), "$%.0f - $%.0f", values.get(0), values.get(1)));
+            dBinding.tvBudgetLabel.setText(String.format(Locale.getDefault(), "$%.0f - $%.0f", values.get(0), values.get(1)));
         });
 
-        view.findViewById(R.id.btnApplyFilters).setOnClickListener(v -> {
-            List<Float> values = rsBudget.getValues();
+        dBinding.btnApplyFilters.setOnClickListener(v -> {
+            List<Float> values = dBinding.rsBudget.getValues();
             currentMin = values.get(0);
             currentMax = values.get(1);
 
-            int checkedSortId = cgSort.getCheckedChipId();
+            int checkedSortId = dBinding.cgSort.getCheckedChipId();
             isLowToHigh = (checkedSortId == R.id.chipLowToHigh);
 
             applyFilters();
@@ -216,14 +194,12 @@ public class PlanHandler {
 
             if (categoryMatch && budgetMatch) {
                 filteredPlans.add(plan);
-                // Only show in banner if "All" is selected to avoid category overlap confusion
                 if (plan.isFeatured() && isAllSelected) {
                     bannerList.add(plan);
                 }
             }
         }
 
-        // Sort filtered plans based on user selection
         Collections.sort(filteredPlans, (p1, p2) -> {
             if (isLowToHigh) {
                 return Double.compare(p1.getInvestAmount(), p2.getInvestAmount());
@@ -232,7 +208,6 @@ public class PlanHandler {
             }
         });
 
-        // Always sort banners by highest investment amount first
         Collections.sort(bannerList, (p1, p2) -> Double.compare(p2.getInvestAmount(), p1.getInvestAmount()));
 
         adapter.notifyDataSetChanged();
@@ -241,19 +216,18 @@ public class PlanHandler {
         int bannerVisibility = bannerList.isEmpty() ? View.GONE : View.VISIBLE;
         int indicatorVisibility = bannerList.size() <= 1 ? View.GONE : View.VISIBLE;
 
-        View bannerContainer = rvPlans.getRootView().findViewById(R.id.banner_container);
-        if (bannerContainer != null) {
-            bannerContainer.setVisibility(bannerVisibility);
+        if (binding.bannerContainer != null) {
+            binding.bannerContainer.setVisibility(bannerVisibility);
         }
-        if (bannerIndicator != null) {
-            bannerIndicator.setVisibility(indicatorVisibility);
+        if (binding.bannerIndicator != null) {
+            binding.bannerIndicator.setVisibility(indicatorVisibility);
         }
     }
 
     private void scrollToPlan(String planId) {
         for (int i = 0; i < filteredPlans.size(); i++) {
             if (filteredPlans.get(i).getId().equals(planId)) {
-                rvPlans.smoothScrollToPosition(i);
+                binding.rvPlans.smoothScrollToPosition(i);
                 break;
             }
         }
@@ -271,18 +245,12 @@ public class PlanHandler {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    // Wallet Balance
-                    Object balVal = snapshot.child("wallet_balance").getValue();
-                    if (balVal instanceof Number) userBalance = ((Number) balVal).doubleValue();
-
-                    // Active Plans
                     activePlansData.clear();
                     DataSnapshot plansSnap = snapshot.child("active_plans");
                     for (DataSnapshot ds : plansSnap.getChildren()) {
                         activePlansData.put(ds.getKey(), ds);
                     }
 
-                    // Purchase Counts
                     purchaseCountMap.clear();
                     DataSnapshot countsSnap = snapshot.child("purchase_counts");
                     for (DataSnapshot ds : countsSnap.getChildren()) {
@@ -293,25 +261,8 @@ public class PlanHandler {
                     adapter.notifyDataSetChanged();
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            @Override public void onCancelled(@NonNull DatabaseError error) {}
         });
-    }
-
-    private void checkAndAutoClaim(DataSnapshot activeData) {
-        Long lastClaim = activeData.child("lastProfitClaim").getValue(Long.class);
-        if (lastClaim == null) return;
-        long currentTime = System.currentTimeMillis();
-        long oneDayMillis = 24L * 60L * 60L * 1000L;
-        if (currentTime - lastClaim >= oneDayMillis) {
-            String planId = activeData.getKey();
-            for (Plan p : allPlans) {
-                if (p.getId().equals(planId)) {
-                    claimProfit(p, activeData, true);
-                    break;
-                }
-            }
-        }
     }
 
     private void fetchPlans() {
@@ -349,7 +300,6 @@ public class PlanHandler {
                 minBudget = (float) absoluteMin;
                 maxBudget = (float) absoluteMax;
 
-                // Keep current selection within bounds if they were at defaults
                 if (currentMax == 1000 && currentMin == 0) {
                     currentMin = minBudget;
                     currentMax = maxBudget;
@@ -357,9 +307,7 @@ public class PlanHandler {
 
                 applyFilters();
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            @Override public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
 
@@ -406,7 +354,6 @@ public class PlanHandler {
                     newUnlockedBalance = Math.max(0, unlockedBalance - remainingToDeductFromUnlocked);
                 }
 
-                // Add first day's profit immediately
                 double finalWalletBalance = currentBalance - investAmount + dailyProfit;
                 double finalUnlockedBalance = newUnlockedBalance + dailyProfit;
                 double finalTotalProfit = 0;

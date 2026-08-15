@@ -2,11 +2,10 @@ package com.ascend.invest.handlers;
 
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 
-import com.ascend.invest.R;
+import com.ascend.invest.databinding.SectionDepositsBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,48 +25,41 @@ public class DepositHandler {
         this.mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
-    public void setupDepositListeners(View root, String userId, String adminAddress) {
-        View depositButton = root.findViewById(R.id.deposit_button);
-        if (depositButton == null) return;
+    public void setupDepositListeners(SectionDepositsBinding binding, String userId, String adminAddress) {
+        if (binding.depositButton == null) return;
 
-        depositButton.setOnClickListener(v -> {
-            EditText etAmount = root.findViewById(R.id.deposit_amount);
-            EditText etAddress = root.findViewById(R.id.user_wallet_address);
-            EditText etTxId = root.findViewById(R.id.transaction_id);
-            
-            if (etAmount == null || etAddress == null || etTxId == null) return;
+        binding.depositButton.setOnClickListener(v -> {
+            if (binding.depositAmount == null || binding.userWalletAddress == null || binding.transactionId == null) return;
 
-            String amount = etAmount.getText().toString().trim();
-            String userAddress = etAddress.getText().toString().trim();
-            String txId = etTxId.getText().toString().trim();
+            String amount = binding.depositAmount.getText().toString().trim();
+            String userAddress = binding.userWalletAddress.getText().toString().trim();
+            String txId = binding.transactionId.getText().toString().trim();
 
             if (TextUtils.isEmpty(amount) || TextUtils.isEmpty(txId)) {
-                Toast.makeText(root.getContext(), "Amount and Transaction ID are required", Toast.LENGTH_SHORT).show();
+                Toast.makeText(binding.getRoot().getContext(), "Amount and Transaction ID are required", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Check if transaction ID has already been used (using query for safety against illegal key characters)
             mDatabase.child("used_transaction_ids").orderByValue().equalTo(txId).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        Toast.makeText(root.getContext(), "This Transaction ID has already been used. Please provide a unique hash.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(binding.getRoot().getContext(), "This Transaction ID has already been used. Please provide a unique hash.", Toast.LENGTH_LONG).show();
                     } else {
                         createDepositRequest(userId, amount, userAddress, txId, adminAddress, new DepositCallback() {
                             @Override
                             public void onSuccess(String requestId) {
-                                // Mark ID as used with a random key to avoid Firebase key restrictions on hashes
                                 mDatabase.child("used_transaction_ids").push().setValue(txId);
                                 
-                                Toast.makeText(root.getContext(), "Deposit request submitted successfully", Toast.LENGTH_SHORT).show();
-                                etAmount.setText("");
-                                etAddress.setText("");
-                                etTxId.setText("");
+                                Toast.makeText(binding.getRoot().getContext(), "Deposit request submitted successfully", Toast.LENGTH_SHORT).show();
+                                binding.depositAmount.setText("");
+                                binding.userWalletAddress.setText("");
+                                binding.transactionId.setText("");
                             }
 
                             @Override
                             public void onFailure(String error) {
-                                Toast.makeText(root.getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(binding.getRoot().getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -99,7 +91,6 @@ public class DepositHandler {
             return;
         }
 
-        // Wallet address is now optional, but transactionId is not.
         String displayAddress = (userWalletAddress == null || userWalletAddress.isEmpty()) ? "Not Provided" : userWalletAddress;
 
         if (transactionId == null || transactionId.isEmpty()) {
@@ -112,7 +103,6 @@ public class DepositHandler {
             return;
         }
 
-        // Generate unique request ID
         String requestId = UserHandler.getInstance().getTransactionsRef(userId, "deposit").push().getKey();
         if (requestId == null) {
             callback.onFailure("Failed to generate request ID");
@@ -133,14 +123,12 @@ public class DepositHandler {
         transactionData.put("transactionId", transactionId);
         transactionData.put("adminWalletAddress", adminWalletAddress);
 
-        // Create admin request data (includes user info)
         Map<String, Object> adminRequestData = new HashMap<>();
         adminRequestData.putAll(transactionData);
         adminRequestData.put("userId", userId);
         adminRequestData.put("userWalletAddress", displayAddress);
         adminRequestData.put("adminWalletAddress", adminWalletAddress);
 
-        // Update both locations
         mDatabase.child("transactions/deposit_req/" + userId + "_" + requestId).setValue(adminRequestData);
         
         Map<String, Object> userUpdates = new HashMap<>();
@@ -152,13 +140,11 @@ public class DepositHandler {
     }
 
     public void acceptDepositRequest(String userId, String requestId, DepositStatusCallback callback) {
-        // First, get the request data from admin location
         mDatabase.child("transactions").child("deposit_req").child(userId + "_" + requestId)
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()) {
-                            // Update user transaction status to Success and update balance
                             UserHandler.getInstance().getUserData(userId, new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot userSnapshot) {
@@ -199,7 +185,6 @@ public class DepositHandler {
 
                                     UserHandler.getInstance().updateUserData(userId, userUpdates, 
                                             aVoid -> {
-                                                // Distribute referral commissions
                                                 if (finalDepositAmount > 0) {
                                                     new ReferralManager().distributeCommissions(userId, finalDepositAmount);
                                                 }
@@ -226,7 +211,6 @@ public class DepositHandler {
     }
 
     public void rejectDepositRequest(String userId, String requestId, DepositStatusCallback callback) {
-        // Update user transaction status to Failed and remove from admin location
         Map<String, Object> userUpdates = new HashMap<>();
         userUpdates.put("transactions/deposit/" + requestId + "/status", "Failed");
         
@@ -237,7 +221,6 @@ public class DepositHandler {
                 e -> callback.onFailure("Failed to reject deposit request: " + e.getMessage()));
     }
 
-    // Callback interfaces
     public interface DepositCallback {
         void onSuccess(String requestId);
         void onFailure(String error);

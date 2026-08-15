@@ -89,7 +89,9 @@
             android:layout_height="180dp"
             android:layout_marginTop="24dp"/>
 
-        <include layout="@layout/earning_report_item_metric_row" />
+        <include
+            android:id="@+id/layout_metrics"
+            layout="@layout/earning_report_item_metric_row" />
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

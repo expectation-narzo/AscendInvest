@@ -45,10 +45,18 @@
         </LinearLayout>
 
 
-        <include layout="@layout/card_layout_wallet_balance" />
-        <include layout="@layout/card_layout_total_deposit" />
-        <include layout="@layout/card_layout_total_profit" />
-        <include layout="@layout/card_layout_earning_report" />
+        <include
+            android:id="@+id/layout_balance"
+            layout="@layout/card_layout_wallet_balance" />
+        <include
+            android:id="@+id/layout_deposit"
+            layout="@layout/card_layout_total_deposit" />
+        <include
+            android:id="@+id/layout_profit"
+            layout="@layout/card_layout_total_profit" />
+        <include
+            android:id="@+id/layout_earning_report"
+            layout="@layout/card_layout_earning_report" />
 
     </LinearLayout>
 

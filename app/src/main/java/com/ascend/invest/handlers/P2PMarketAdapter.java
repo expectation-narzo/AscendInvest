@@ -3,15 +3,12 @@ package com.ascend.invest.handlers;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ascend.invest.R;
-import com.google.android.material.button.MaterialButton;
+import com.ascend.invest.databinding.ItemP2pListingBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,26 +41,26 @@ public class P2PMarketAdapter extends RecyclerView.Adapter<P2PMarketAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_p2p_listing, parent, false);
-        return new ViewHolder(view);
+        ItemP2pListingBinding binding = ItemP2pListingBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         P2PListing listing = listings.get(position);
-        holder.tvName.setText(listing.sellerName != null ? listing.sellerName : "User");
-        holder.tvPrice.setText(String.format(Locale.US, "₹%.2f", listing.price));
-        holder.tvAmount.setText(String.format(Locale.US, "%.2f USDT", listing.remainingAmount));
-        holder.tvLimit.setText(String.format(Locale.US, "Min: $%.2f", listing.minLimit));
+        holder.binding.tvSellerName.setText(listing.sellerName != null ? listing.sellerName : "User");
+        holder.binding.tvListingPrice.setText(String.format(Locale.US, "₹%.2f", listing.price));
+        holder.binding.tvListingAmount.setText(String.format(Locale.US, "%.2f USDT", listing.remainingAmount));
+        holder.binding.tvListingLimit.setText(String.format(Locale.US, "Min: $%.2f", listing.minLimit));
 
         boolean isOwnAd = listing.sellerUid.equals(currentUserId);
         
         if (isOwnAd) {
-            holder.btnAction.setText("Delete Ad");
-            holder.btnAction.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#EF4444"))); // Red
+            holder.binding.btnBuyListing.setText("Delete Ad");
+            holder.binding.btnBuyListing.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#EF4444"))); // Red
         } else {
-            holder.btnAction.setText("Buy USDT");
-            holder.btnAction.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22C55E"))); // Green
+            holder.binding.btnBuyListing.setText("Buy USDT");
+            holder.binding.btnBuyListing.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22C55E"))); // Green
         }
 
         // Cleanup old listener
@@ -79,9 +76,9 @@ public class P2PMarketAdapter extends RecyclerView.Adapter<P2PMarketAdapter.View
                 boolean isOnline = snapshot.exists() && "online".equals(snapshot.getValue(String.class));
                 int color = Color.parseColor(isOnline ? "#22C55E" : "#94A3B8");
                 
-                holder.onlineIndicator.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+                holder.binding.viewOnlineIndicator.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
                 if (!isOwnAd) {
-                    holder.btnAction.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
+                    holder.binding.btnBuyListing.setBackgroundTintList(android.content.res.ColorStateList.valueOf(color));
                 }
             }
             @Override public void onCancelled(@NonNull DatabaseError error) {}
@@ -91,7 +88,7 @@ public class P2PMarketAdapter extends RecyclerView.Adapter<P2PMarketAdapter.View
         statusListeners.put(holder, statusListener);
         statusRefs.put(holder, statusRef);
         
-        holder.btnAction.setOnClickListener(v -> {
+        holder.binding.btnBuyListing.setOnClickListener(v -> {
             if (listener != null) listener.onActionClick(listing, isOwnAd);
         });
     }
@@ -110,18 +107,11 @@ public class P2PMarketAdapter extends RecyclerView.Adapter<P2PMarketAdapter.View
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvAmount, tvLimit, tvPrice;
-        MaterialButton btnAction;
-        View onlineIndicator;
+        final ItemP2pListingBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvName = itemView.findViewById(R.id.tv_seller_name);
-            tvPrice = itemView.findViewById(R.id.tv_listing_price);
-            tvAmount = itemView.findViewById(R.id.tv_listing_amount);
-            tvLimit = itemView.findViewById(R.id.tv_listing_limit);
-            btnAction = itemView.findViewById(R.id.btn_buy_listing);
-            onlineIndicator = itemView.findViewById(R.id.view_online_indicator);
+        public ViewHolder(@NonNull ItemP2pListingBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
     }
 }
